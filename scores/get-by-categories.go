@@ -15,14 +15,14 @@ type GetByCategories struct {
 }
 
 // Execute returns scores by categories.
-func (q *GetByCategories) Execute(start time.Time, end time.Time) ([]vo.CategoryPeriodScores, []entities.Period, []entities.Category, error) {
-	periods := services.DividePeriods(start, end)
+func (q *GetByCategories) Execute(from time.Time, to time.Time) ([]vo.CategoryPeriodScores, []entities.Period, []entities.Category, error) {
+	periods := services.DividePeriods(from, to)
 	categories, err := q.CategoryRepo.FindAll()
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
-	ratings, err := q.RatingRepo.FindByPeriod(start, end)
+	ratings, err := q.RatingRepo.FindByPeriod(from, to)
 	if err != nil {
 		return nil, nil, nil, err
 	}

@@ -6,8 +6,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	getbycategories "go-scores/gen/get_by_categories"
-	getbyperiods "go-scores/gen/get_by_periods"
 	getbytickets "go-scores/gen/get_by_tickets"
+	getchangesbyperiods "go-scores/gen/get_changes_by_periods"
 	getoverall "go-scores/gen/get_overall"
 	"go-scores/scores/interfaces/controllers"
 	"go-scores/scores/interfaces/grpc"
@@ -40,7 +40,7 @@ var _ = BeforeSuite(func(ctx context.Context) {
 			getOverallSvc      getoverall.Service
 			getByCategoriesSvc getbycategories.Service
 			getByTicketsSvc    getbytickets.Service
-			getByPeriodsSvc    getbyperiods.Service
+			getByPeriodsSvc    getchangesbyperiods.Service
 		)
 
 		{
@@ -54,13 +54,13 @@ var _ = BeforeSuite(func(ctx context.Context) {
 			getOverallEndpoints      *getoverall.Endpoints
 			getByCategoriesEndpoints *getbycategories.Endpoints
 			getByTicketsEndpoints    *getbytickets.Endpoints
-			getByPeriodsEndpoints    *getbyperiods.Endpoints
+			getByPeriodsEndpoints    *getchangesbyperiods.Endpoints
 		)
 		{
 			getOverallEndpoints = getoverall.NewEndpoints(getOverallSvc)
 			getByCategoriesEndpoints = getbycategories.NewEndpoints(getByCategoriesSvc)
 			getByTicketsEndpoints = getbytickets.NewEndpoints(getByTicketsSvc)
-			getByPeriodsEndpoints = getbyperiods.NewEndpoints(getByPeriodsSvc)
+			getByPeriodsEndpoints = getchangesbyperiods.NewEndpoints(getByPeriodsSvc)
 		}
 
 		addr := "grpc://localhost"

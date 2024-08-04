@@ -4,7 +4,7 @@ import (
 	"context"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	getbyperiods "go-scores/gen/get_by_periods"
+	getbyperiods "go-scores/gen/get_changes_by_periods"
 	"go-scores/scores/interfaces/controllers"
 	pkgtime "go-scores/scores/pkg/time"
 )
@@ -15,19 +15,19 @@ var _ = Describe("get scores evolution by periods", func() {
 		periodType := pkgtime.PeriodTypeWeek
 
 		BeforeEach(func() {
-			endpoint := getbyperiods.NewGetByPeriodsEndpoint(controllers.NewGetByPeriods(DB))
+			endpoint := getbyperiods.NewGetChangesByPeriodsEndpoint(controllers.NewGetByPeriods(DB))
 			client = getbyperiods.NewClient(endpoint)
 		})
 
 		When("calculating scores", func() {
-			var result *getbyperiods.GetByPeriodsResult
+			var result *getbyperiods.GetChangesByPeriodsResult
 			var err error
 			BeforeEach(func(ctx context.Context) {
-				payload := &getbyperiods.GetByPeriodsPayload{
+				payload := &getbyperiods.GetChangesByPeriodsPayload{
 					Period: periodType,
 				}
 
-				result, err = client.GetByPeriods(ctx, payload)
+				result, err = client.GetChangesByPeriods(ctx, payload)
 				Expect(err).To(BeNil())
 			})
 

@@ -11,8 +11,8 @@ import (
 	"flag"
 	"fmt"
 	getbycategoriesc "go-scores/gen/grpc/get_by_categories/client"
-	getbyperiodsc "go-scores/gen/grpc/get_by_periods/client"
 	getbyticketsc "go-scores/gen/grpc/get_by_tickets/client"
+	getchangesbyperiodsc "go-scores/gen/grpc/get_changes_by_periods/client"
 	getoverallc "go-scores/gen/grpc/get_overall/client"
 	"os"
 
@@ -27,7 +27,7 @@ func UsageCommands() string {
 	return `get-overall get-overall-score
 get-by-categories get-aggregated-scores
 get-by-tickets get-aggregated-scores-by-ticket
-get-by-periods get-by-periods
+get-changes-by-periods get-changes-by-periods
 `
 }
 
@@ -45,7 +45,7 @@ func UsageExamples() string {
       "from": "Similique cupiditate ut facilis.",
       "to": "Quod vitae amet quos sint nulla."
    }'` + "\n" +
-		os.Args[0] + ` get-by-periods get-by-periods --message '{
+		os.Args[0] + ` get-changes-by-periods get-changes-by-periods --message '{
       "period": "Ab sed recusandae qui ex molestiae consectetur."
    }'` + "\n" +
 		""
@@ -70,10 +70,10 @@ func ParseEndpoint(cc *grpc.ClientConn, opts ...grpc.CallOption) (goa.Endpoint, 
 		getByTicketsGetAggregatedScoresByTicketFlags       = flag.NewFlagSet("get-aggregated-scores-by-ticket", flag.ExitOnError)
 		getByTicketsGetAggregatedScoresByTicketMessageFlag = getByTicketsGetAggregatedScoresByTicketFlags.String("message", "", "")
 
-		getByPeriodsFlags = flag.NewFlagSet("get-by-periods", flag.ContinueOnError)
+		getChangesByPeriodsFlags = flag.NewFlagSet("get-changes-by-periods", flag.ContinueOnError)
 
-		getByPeriodsGetByPeriodsFlags       = flag.NewFlagSet("get-by-periods", flag.ExitOnError)
-		getByPeriodsGetByPeriodsMessageFlag = getByPeriodsGetByPeriodsFlags.String("message", "", "")
+		getChangesByPeriodsGetChangesByPeriodsFlags       = flag.NewFlagSet("get-changes-by-periods", flag.ExitOnError)
+		getChangesByPeriodsGetChangesByPeriodsMessageFlag = getChangesByPeriodsGetChangesByPeriodsFlags.String("message", "", "")
 	)
 	getOverallFlags.Usage = getOverallUsage
 	getOverallGetOverallScoreFlags.Usage = getOverallGetOverallScoreUsage
@@ -84,8 +84,8 @@ func ParseEndpoint(cc *grpc.ClientConn, opts ...grpc.CallOption) (goa.Endpoint, 
 	getByTicketsFlags.Usage = getByTicketsUsage
 	getByTicketsGetAggregatedScoresByTicketFlags.Usage = getByTicketsGetAggregatedScoresByTicketUsage
 
-	getByPeriodsFlags.Usage = getByPeriodsUsage
-	getByPeriodsGetByPeriodsFlags.Usage = getByPeriodsGetByPeriodsUsage
+	getChangesByPeriodsFlags.Usage = getChangesByPeriodsUsage
+	getChangesByPeriodsGetChangesByPeriodsFlags.Usage = getChangesByPeriodsGetChangesByPeriodsUsage
 
 	if err := flag.CommandLine.Parse(os.Args[1:]); err != nil {
 		return nil, nil, err
@@ -108,8 +108,8 @@ func ParseEndpoint(cc *grpc.ClientConn, opts ...grpc.CallOption) (goa.Endpoint, 
 			svcf = getByCategoriesFlags
 		case "get-by-tickets":
 			svcf = getByTicketsFlags
-		case "get-by-periods":
-			svcf = getByPeriodsFlags
+		case "get-changes-by-periods":
+			svcf = getChangesByPeriodsFlags
 		default:
 			return nil, nil, fmt.Errorf("unknown service %q", svcn)
 		}
@@ -146,10 +146,10 @@ func ParseEndpoint(cc *grpc.ClientConn, opts ...grpc.CallOption) (goa.Endpoint, 
 
 			}
 
-		case "get-by-periods":
+		case "get-changes-by-periods":
 			switch epn {
-			case "get-by-periods":
-				epf = getByPeriodsGetByPeriodsFlags
+			case "get-changes-by-periods":
+				epf = getChangesByPeriodsGetChangesByPeriodsFlags
 
 			}
 
@@ -194,12 +194,12 @@ func ParseEndpoint(cc *grpc.ClientConn, opts ...grpc.CallOption) (goa.Endpoint, 
 				endpoint = c.GetAggregatedScoresByTicket()
 				data, err = getbyticketsc.BuildGetAggregatedScoresByTicketPayload(*getByTicketsGetAggregatedScoresByTicketMessageFlag)
 			}
-		case "get-by-periods":
-			c := getbyperiodsc.NewClient(cc, opts...)
+		case "get-changes-by-periods":
+			c := getchangesbyperiodsc.NewClient(cc, opts...)
 			switch epn {
-			case "get-by-periods":
-				endpoint = c.GetByPeriods()
-				data, err = getbyperiodsc.BuildGetByPeriodsPayload(*getByPeriodsGetByPeriodsMessageFlag)
+			case "get-changes-by-periods":
+				endpoint = c.GetChangesByPeriods()
+				data, err = getchangesbyperiodsc.BuildGetChangesByPeriodsPayload(*getChangesByPeriodsGetChangesByPeriodsMessageFlag)
 			}
 		}
 	}
@@ -292,28 +292,28 @@ Example:
 `, os.Args[0])
 }
 
-// get-by-periodsUsage displays the usage of the get-by-periods command and its
-// subcommands.
-func getByPeriodsUsage() {
+// get-changes-by-periodsUsage displays the usage of the get-changes-by-periods
+// command and its subcommands.
+func getChangesByPeriodsUsage() {
 	fmt.Fprintf(os.Stderr, `Period over period score change
 Usage:
-    %[1]s [globalflags] get-by-periods COMMAND [flags]
+    %[1]s [globalflags] get-changes-by-periods COMMAND [flags]
 
 COMMAND:
-    get-by-periods: Get the score change from a selected period over the previous period.
+    get-changes-by-periods: Get the score change from a selected period over the previous period.
 
 Additional help:
-    %[1]s get-by-periods COMMAND --help
+    %[1]s get-changes-by-periods COMMAND --help
 `, os.Args[0])
 }
-func getByPeriodsGetByPeriodsUsage() {
-	fmt.Fprintf(os.Stderr, `%[1]s [flags] get-by-periods get-by-periods -message JSON
+func getChangesByPeriodsGetChangesByPeriodsUsage() {
+	fmt.Fprintf(os.Stderr, `%[1]s [flags] get-changes-by-periods get-changes-by-periods -message JSON
 
 Get the score change from a selected period over the previous period.
     -message JSON: 
 
 Example:
-    %[1]s get-by-periods get-by-periods --message '{
+    %[1]s get-changes-by-periods get-changes-by-periods --message '{
       "period": "Ab sed recusandae qui ex molestiae consectetur."
    }'
 `, os.Args[0])

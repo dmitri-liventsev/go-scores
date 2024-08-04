@@ -138,10 +138,10 @@ paths:
     /periods/{period}:
         get:
             tags:
-                - get by periods
-            summary: getByPeriods get by periods
+                - get changes by periods
+            summary: getChangesByPeriods get changes by periods
             description: Get the score change from a selected period over the previous period.
-            operationId: get by periods#getByPeriods
+            operationId: get changes by periods#getChangesByPeriods
             parameters:
                 - name: period
                   in: path
@@ -158,7 +158,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetByPeriodsResponseBody'
+                                $ref: '#/components/schemas/GetChangesByPeriodsResponseBody'
                             example:
                                 data:
                                     - period_id: 8473324632709310893
@@ -516,7 +516,7 @@ components:
             required:
                 - meta
                 - data
-        GetByPeriodsResponseBody:
+        GetChangesByPeriodsResponseBody:
             type: object
             properties:
                 data:
@@ -685,5 +685,5 @@ tags:
       description: Aggregated category scores over a period of time
     - name: get by tickets
       description: Aggregate scores for categories within defined period by ticket
-    - name: get by periods
+    - name: get changes by periods
       description: Period over period score change

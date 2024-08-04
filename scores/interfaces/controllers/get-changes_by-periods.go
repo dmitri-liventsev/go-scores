@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"context"
-	getbyperiods "go-scores/gen/get_by_periods"
+	getbyperiods "go-scores/gen/get_changes_by_periods"
 	"go-scores/scores"
 	"go-scores/scores/internal/domain/entities"
 	"go-scores/scores/internal/domain/repositories"
@@ -11,24 +11,24 @@ import (
 )
 
 // get by periods service example implementation.
-type getByPeriodssrvc struct {
+type getChangesByPeriodssrvc struct {
 	query scores.GetByPeriods
 }
 
-// GetByPeriods Get the score change from a selected period over the previous period.
-func (s *getByPeriodssrvc) GetByPeriods(_ context.Context, p *getbyperiods.GetByPeriodsPayload) (*getbyperiods.GetByPeriodsResult, error) {
+// GetChangesByPeriods Get the score change from a selected period over the previous period.
+func (s *getChangesByPeriodssrvc) GetChangesByPeriods(_ context.Context, p *getbyperiods.GetChangesByPeriodsPayload) (*getbyperiods.GetChangesByPeriodsResult, error) {
 	scoreDeltas, periods, err := s.query.Execute(p.Period)
 	if err != nil {
 		return nil, err
 	}
 
-	return &getbyperiods.GetByPeriodsResult{
+	return &getbyperiods.GetChangesByPeriodsResult{
 		Meta: s.transformMeta(periods),
 		Data: s.transformData(scoreDeltas),
 	}, nil
 }
 
-func (s *getByPeriodssrvc) transformMeta(periods []entities.Period) *getbyperiods.PeriodsMeta {
+func (s *getChangesByPeriodssrvc) transformMeta(periods []entities.Period) *getbyperiods.PeriodsMeta {
 	mPeriod := make([]*getbyperiods.Period, len(periods))
 	for i, p := range periods {
 		start := p.Start.Unix()
@@ -46,7 +46,7 @@ func (s *getByPeriodssrvc) transformMeta(periods []entities.Period) *getbyperiod
 	}
 }
 
-func (s *getByPeriodssrvc) transformData(scoreDeltas []vo.ScoreDelta) []*getbyperiods.PeriodScoreChange {
+func (s *getChangesByPeriodssrvc) transformData(scoreDeltas []vo.ScoreDelta) []*getbyperiods.PeriodScoreChange {
 	scoreDiff := make([]*getbyperiods.PeriodScoreChange, len(scoreDeltas))
 	for i, p := range scoreDeltas {
 		pID := p.PeriodID.ToInt()
@@ -63,7 +63,7 @@ func (s *getByPeriodssrvc) transformData(scoreDeltas []vo.ScoreDelta) []*getbype
 
 // NewGetByPeriods returns the get by periods service implementation.
 func NewGetByPeriods(db *gorm.DB) getbyperiods.Service {
-	return &getByPeriodssrvc{
+	return &getChangesByPeriodssrvc{
 		query: scores.NewGetByPeriods(
 			repositories.NewRatings(db),
 			repositories.NewCategories(db),

@@ -1,28 +1,28 @@
 // Code generated with goa v3.18.2, DO NOT EDIT.
 //
-// get by periods protocol buffer definition
+// get changes by periods protocol buffer definition
 //
 // Command:
 // $ goa gen go-scores/design
 
 syntax = "proto3";
 
-package get_by_periods;
+package get_changes_by_periods;
 
-option go_package = "/get_by_periodspb";
+option go_package = "/get_changes_by_periodspb";
 
 // Period over period score change
-service GetByPeriods {
+service GetChangesByPeriods {
 	// Get the score change from a selected period over the previous period.
-	rpc GetByPeriods (GetByPeriodsRequest) returns (GetByPeriodsResponse);
+	rpc GetChangesByPeriods (GetChangesByPeriodsRequest) returns (GetChangesByPeriodsResponse);
 }
 
-message GetByPeriodsRequest {
+message GetChangesByPeriodsRequest {
 	// The period type (e.g., week, month, year)
 	string period = 1;
 }
 
-message GetByPeriodsResponse {
+message GetChangesByPeriodsResponse {
 	PeriodsMeta meta = 1;
 	repeated PeriodScoreChange data = 2;
 }

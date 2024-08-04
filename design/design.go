@@ -120,10 +120,10 @@ var _ = Service("get overall", func() {
 })
 
 // Service: Periods
-var _ = Service("get by periods", func() {
+var _ = Service("get changes by periods", func() {
 	Description("Period over period score change")
 
-	Method("getByPeriods", func() {
+	Method("getChangesByPeriods", func() {
 		Description("Get the score change from a selected period over the previous period.")
 		Payload(func() {
 			Field(1, "period", String, "The period type (e.g., week, month, year)")

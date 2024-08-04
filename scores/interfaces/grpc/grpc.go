@@ -4,15 +4,15 @@ import (
 	"context"
 	"fmt"
 	getbycategories "go-scores/gen/get_by_categories"
-	getbyperiods "go-scores/gen/get_by_periods"
 	getbytickets "go-scores/gen/get_by_tickets"
+	getchangesbyperiods "go-scores/gen/get_changes_by_periods"
 	getoverall "go-scores/gen/get_overall"
 	get_by_categoriespb "go-scores/gen/grpc/get_by_categories/pb"
 	getbycategoriessvr "go-scores/gen/grpc/get_by_categories/server"
-	get_by_periodspb "go-scores/gen/grpc/get_by_periods/pb"
-	getbyperiodssvr "go-scores/gen/grpc/get_by_periods/server"
 	get_by_ticketspb "go-scores/gen/grpc/get_by_tickets/pb"
 	getbyticketssvr "go-scores/gen/grpc/get_by_tickets/server"
+	get_changes_by_periodspb "go-scores/gen/grpc/get_changes_by_periods/pb"
+	getbyperiodssvr "go-scores/gen/grpc/get_changes_by_periods/server"
 	get_overallpb "go-scores/gen/grpc/get_overall/pb"
 	getoverallsvr "go-scores/gen/grpc/get_overall/server"
 	"net"
@@ -27,7 +27,7 @@ import (
 
 // handleGRPCServer starts configures and starts a gRPC server on the given
 // URL. It shuts down the server if any error is received in the error channel.
-func Handle(ctx context.Context, u *url.URL, getOverallEndpoints *getoverall.Endpoints, getByCategoriesEndpoints *getbycategories.Endpoints, getByTicketsEndpoints *getbytickets.Endpoints, getByPeriodsEndpoints *getbyperiods.Endpoints, wg *sync.WaitGroup, errc chan error, dbg bool) {
+func Handle(ctx context.Context, u *url.URL, getOverallEndpoints *getoverall.Endpoints, getByCategoriesEndpoints *getbycategories.Endpoints, getByTicketsEndpoints *getbytickets.Endpoints, getByPeriodsEndpoints *getchangesbyperiods.Endpoints, wg *sync.WaitGroup, errc chan error, dbg bool) {
 
 	// Wrap the endpoints with the transport specific layers. The generated
 	// server packages contains code generated from the design which maps
@@ -60,7 +60,7 @@ func Handle(ctx context.Context, u *url.URL, getOverallEndpoints *getoverall.End
 	get_overallpb.RegisterGetOverallServer(srv, getOverallServer)
 	get_by_categoriespb.RegisterGetByCategoriesServer(srv, getByCategoriesServer)
 	get_by_ticketspb.RegisterGetByTicketsServer(srv, getByTicketsServer)
-	get_by_periodspb.RegisterGetByPeriodsServer(srv, getByPeriodsServer)
+	get_changes_by_periodspb.RegisterGetChangesByPeriodsServer(srv, getByPeriodsServer)
 
 	for svc, info := range srv.GetServiceInfo() {
 		for _, m := range info.Methods {

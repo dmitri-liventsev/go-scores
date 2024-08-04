@@ -69,10 +69,10 @@ paths:
     /periods/{period}:
         get:
             tags:
-                - get by periods
-            summary: getByPeriods get by periods
+                - get changes by periods
+            summary: getChangesByPeriods get changes by periods
             description: Get the score change from a selected period over the previous period.
-            operationId: get by periods#getByPeriods
+            operationId: get changes by periods#getChangesByPeriods
             parameters:
                 - name: period
                   in: path
@@ -83,7 +83,7 @@ paths:
                 "200":
                     description: OK response.
                     schema:
-                        $ref: '#/definitions/GetByPeriodsGetByPeriodsResponseBody'
+                        $ref: '#/definitions/GetChangesByPeriodsGetChangesByPeriodsResponseBody'
                         required:
                             - meta
                             - data
@@ -342,47 +342,6 @@ definitions:
         required:
             - meta
             - data
-    GetByPeriodsGetByPeriodsResponseBody:
-        title: GetByPeriodsGetByPeriodsResponseBody
-        type: object
-        properties:
-            data:
-                type: array
-                items:
-                    $ref: '#/definitions/PeriodScoreChangeResponseBody'
-                example:
-                    - period_id: 8473324632709310893
-                      score_diff: 0.3662448
-                    - period_id: 8473324632709310893
-                      score_diff: 0.3662448
-                    - period_id: 8473324632709310893
-                      score_diff: 0.3662448
-                    - period_id: 8473324632709310893
-                      score_diff: 0.3662448
-            meta:
-                $ref: '#/definitions/PeriodsMetaResponseBody'
-        example:
-            data:
-                - period_id: 8473324632709310893
-                  score_diff: 0.3662448
-                - period_id: 8473324632709310893
-                  score_diff: 0.3662448
-                - period_id: 8473324632709310893
-                  score_diff: 0.3662448
-            meta:
-                periods:
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-        required:
-            - meta
-            - data
     GetByTicketsGetAggregatedScoresByTicketResponseBody:
         title: GetByTicketsGetAggregatedScoresByTicketResponseBody
         type: object
@@ -446,6 +405,47 @@ definitions:
                       name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
                     - id: 5397601470293070043
                       name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+        required:
+            - meta
+            - data
+    GetChangesByPeriodsGetChangesByPeriodsResponseBody:
+        title: GetChangesByPeriodsGetChangesByPeriodsResponseBody
+        type: object
+        properties:
+            data:
+                type: array
+                items:
+                    $ref: '#/definitions/PeriodScoreChangeResponseBody'
+                example:
+                    - period_id: 8473324632709310893
+                      score_diff: 0.3662448
+                    - period_id: 8473324632709310893
+                      score_diff: 0.3662448
+                    - period_id: 8473324632709310893
+                      score_diff: 0.3662448
+                    - period_id: 8473324632709310893
+                      score_diff: 0.3662448
+            meta:
+                $ref: '#/definitions/PeriodsMetaResponseBody'
+        example:
+            data:
+                - period_id: 8473324632709310893
+                  score_diff: 0.3662448
+                - period_id: 8473324632709310893
+                  score_diff: 0.3662448
+                - period_id: 8473324632709310893
+                  score_diff: 0.3662448
+            meta:
+                periods:
+                    - end: 1197696383953815086
+                      id: 8497404033504113704
+                      start: 1890042222440478675
+                    - end: 1197696383953815086
+                      id: 8497404033504113704
+                      start: 1890042222440478675
+                    - end: 1197696383953815086
+                      id: 8497404033504113704
+                      start: 1890042222440478675
         required:
             - meta
             - data
