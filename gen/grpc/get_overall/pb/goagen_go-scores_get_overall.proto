@@ -1,0 +1,29 @@
+// Code generated with goa v3.18.2, DO NOT EDIT.
+//
+// get overall protocol buffer definition
+//
+// Command:
+// $ goa gen go-scores/design
+
+syntax = "proto3";
+
+package get_overall;
+
+option go_package = "/get_overallpb";
+
+// Overall aggregate score for a period
+service GetOverall {
+	// Get the overall aggregate score for a specified period.
+	rpc GetOverallScore (GetOverallScoreRequest) returns (GetOverallScoreResponse);
+}
+
+message GetOverallScoreRequest {
+	// Start date (YYYY-MM-DD)
+	string from = 1;
+	// End date (YYYY-MM-DD)
+	string to = 2;
+}
+
+message GetOverallScoreResponse {
+	float field = 1;
+}

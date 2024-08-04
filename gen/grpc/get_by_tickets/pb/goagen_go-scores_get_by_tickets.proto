@@ -1,0 +1,49 @@
+// Code generated with goa v3.18.2, DO NOT EDIT.
+//
+// get by tickets protocol buffer definition
+//
+// Command:
+// $ goa gen go-scores/design
+
+syntax = "proto3";
+
+package get_by_tickets;
+
+option go_package = "/get_by_ticketspb";
+
+// Aggregate scores for categories within defined period by ticket
+service GetByTickets {
+	// Get aggregate category scores by ticket for a specified period.
+	rpc GetAggregatedScoresByTicket (GetAggregatedScoresByTicketRequest) returns (GetAggregatedScoresByTicketResponse);
+}
+
+message GetAggregatedScoresByTicketRequest {
+	// Start date (YYYY-MM-DD)
+	string from = 1;
+	// End date (YYYY-MM-DD)
+	string to = 2;
+}
+
+message GetAggregatedScoresByTicketResponse {
+	TicketMeta meta = 1;
+	repeated TicketScore data = 2;
+}
+
+message TicketMeta {
+	repeated Category categories = 1;
+}
+
+message Category {
+	optional sint32 id = 1;
+	optional string name = 2;
+}
+
+message TicketScore {
+	optional sint32 ticket_id = 1;
+	repeated CategoryScoreDetail categories = 2;
+}
+
+message CategoryScoreDetail {
+	optional sint32 id = 1;
+	optional float score = 2;
+}

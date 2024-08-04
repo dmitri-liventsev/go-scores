@@ -1,0 +1,58 @@
+// Code generated with goa v3.18.2, DO NOT EDIT.
+//
+// get by categories protocol buffer definition
+//
+// Command:
+// $ goa gen go-scores/design
+
+syntax = "proto3";
+
+package get_by_categories;
+
+option go_package = "/get_by_categoriespb";
+
+// Aggregated category scores over a period of time
+service GetByCategories {
+	// Get aggregated scores for categories within a specified period.
+	rpc GetAggregatedScores (GetAggregatedScoresRequest) returns (GetAggregatedScoresResponse);
+}
+
+message GetAggregatedScoresRequest {
+	// Start date (YYYY-MM-DD)
+	string from = 1;
+	// End date (YYYY-MM-DD)
+	string to = 2;
+}
+
+message GetAggregatedScoresResponse {
+	CategoryMeta meta = 1;
+	repeated CategoryScore data = 2;
+}
+
+message CategoryMeta {
+	repeated Period periods = 1;
+	repeated Category categories = 2;
+}
+
+message Period {
+	optional sint32 id = 1;
+	optional sint64 start = 3;
+	optional sint64 end = 4;
+}
+
+message Category {
+	optional sint32 id = 1;
+	optional string name = 2;
+}
+
+message CategoryScore {
+	optional sint32 category_id = 1;
+	optional sint32 num_of_reviews = 2;
+	repeated ScorePeriod periods = 3;
+	optional float total_score = 4;
+}
+
+message ScorePeriod {
+	optional sint32 id = 1;
+	optional float score = 2;
+}
