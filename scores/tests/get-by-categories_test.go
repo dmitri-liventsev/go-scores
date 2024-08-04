@@ -5,16 +5,21 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	getbycategories "go-scores/gen/get_by_categories"
+	"go-scores/scores/interfaces/controllers"
 )
 
 var _ = Describe("get scores by categories", func() {
 	Context("given a daily periods and ratings list", func() {
+		var client *getbycategories.Client
 		var from, to string
 		var err error
 
 		BeforeEach(func() {
 			from = "2019-08-01"
 			to = "2019-08-02"
+
+			endpoint := getbycategories.NewGetAggregatedScoresEndpoint(controllers.NewGetByCategories(DB))
+			client = getbycategories.NewClient(endpoint)
 		})
 
 		When("calculating scores", func() {
@@ -79,12 +84,16 @@ var _ = Describe("get scores by categories", func() {
 		})
 	})
 	Context("given a weekly periods and ratings list", func() {
+		var client *getbycategories.Client
 		var from, to string
 		var err error
 
 		BeforeEach(func() {
 			from = "2019-08-01"
 			to = "2019-09-01"
+
+			endpoint := getbycategories.NewGetAggregatedScoresEndpoint(controllers.NewGetByCategories(DB))
+			client = getbycategories.NewClient(endpoint)
 		})
 
 		When("calculating scores", func() {

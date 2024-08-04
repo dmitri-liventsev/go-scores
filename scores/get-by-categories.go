@@ -15,7 +15,7 @@ type GetByCategories struct {
 }
 
 // Execute returns scores by categories.
-func (q *GetByCategories) Execute(start time.Time, end time.Time) ([]vo.CategoryScore, []entities.Period, []entities.Category, error) {
+func (q *GetByCategories) Execute(start time.Time, end time.Time) ([]vo.CategoryPeriodScores, []entities.Period, []entities.Category, error) {
 	periods := services.DividePeriods(start, end)
 	categories, err := q.CategoryRepo.FindAll()
 	if err != nil {
@@ -28,7 +28,7 @@ func (q *GetByCategories) Execute(start time.Time, end time.Time) ([]vo.Category
 	}
 
 	catService := services.NewCategoryScores(categories)
-	catScores := catService.Calculate(ratings, periods)
+	catScores := catService.GetScores(ratings, periods)
 
 	return catScores, periods, categories, nil
 }

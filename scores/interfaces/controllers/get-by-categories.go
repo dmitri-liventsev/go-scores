@@ -17,7 +17,7 @@ type getByCategories struct {
 }
 
 // GetAggregatedScores Get aggregated scores for categories within a specified period.
-func (s *getByCategories) GetAggregatedScores(ctx context.Context, p *getbycategories.GetAggregatedScoresPayload) (*getbycategories.GetAggregatedScoresResult, error) {
+func (s *getByCategories) GetAggregatedScores(_ context.Context, p *getbycategories.GetAggregatedScoresPayload) (*getbycategories.GetAggregatedScoresResult, error) {
 	layout := "2006-01-02"
 
 	from, err := time.Parse(layout, p.From)
@@ -38,7 +38,7 @@ func (s *getByCategories) GetAggregatedScores(ctx context.Context, p *getbycateg
 	return transform(catScores, periods, categories), nil
 }
 
-func transform(catScores []vo.CategoryScore, periods []entities.Period, categories []entities.Category) *getbycategories.GetAggregatedScoresResult {
+func transform(catScores []vo.CategoryPeriodScores, periods []entities.Period, categories []entities.Category) *getbycategories.GetAggregatedScoresResult {
 	return &getbycategories.GetAggregatedScoresResult{
 		Meta: transformMeta(periods, categories),
 		Data: transformData(catScores),
@@ -73,7 +73,7 @@ func transformMeta(periods []entities.Period, categories []entities.Category) *g
 	}
 }
 
-func transformData(catScores []vo.CategoryScore) []*getbycategories.CategoryScore {
+func transformData(catScores []vo.CategoryPeriodScores) []*getbycategories.CategoryScore {
 	dCatScores := make([]*getbycategories.CategoryScore, len(catScores))
 
 	for i, c := range catScores {

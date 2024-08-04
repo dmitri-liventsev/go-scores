@@ -12,9 +12,9 @@ type CategoryScores struct {
 	calculator ScoreCalculator
 }
 
-// Calculate scores by category. NB all periods should have the same type!
-func (s CategoryScores) Calculate(ratings []entities.Rating, periods []entities.Period) []vo.CategoryScore {
-	result := make([]vo.CategoryScore, len(s.categories))
+// GetScores scores by category. NB all periods should have the same type!
+func (s CategoryScores) GetScores(ratings []entities.Rating, periods []entities.Period) []vo.CategoryPeriodScores {
+	result := make([]vo.CategoryPeriodScores, len(s.categories))
 	catPeriodMap := s.makeCategoryPeriodMap(ratings, periods)
 
 	categoryIDs := make([]vo.CategoryID, 0, len(catPeriodMap))
@@ -28,7 +28,7 @@ func (s CategoryScores) Calculate(ratings []entities.Rating, periods []entities.
 	for i, categoryID := range categoryIDs {
 		periodRatingsMap := catPeriodMap[categoryID]
 		p := s.calcScorePeriods(periodRatingsMap, categoryID)
-		result[i] = vo.CategoryScore{
+		result[i] = vo.CategoryPeriodScores{
 			CategoryID:   categoryID,
 			NumOfReviews: s.calcNumOfReviews(periodRatingsMap),
 			Periods:      p,

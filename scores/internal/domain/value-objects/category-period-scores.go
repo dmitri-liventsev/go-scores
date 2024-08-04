@@ -1,6 +1,6 @@
 package vo
 
-type CategoryScore struct {
+type CategoryPeriodScores struct {
 	CategoryID   CategoryID
 	NumOfReviews int
 	Periods      []ScorePeriod

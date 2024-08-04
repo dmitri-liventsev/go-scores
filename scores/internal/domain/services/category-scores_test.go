@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-var _ = Describe("score calculating", func() {
+var _ = Describe("score calculating for categories", func() {
 	Context("given a daily periods and ratings list", func() {
 		categories := []entities.Category{
 			{
@@ -42,11 +42,11 @@ var _ = Describe("score calculating", func() {
 		}
 
 		When("calculating scores", func() {
-			var categoryScores []vo.CategoryScore
+			var categoryScores []vo.CategoryPeriodScores
 			categoryScoresService := services.NewCategoryScores(categories)
 
 			BeforeEach(func() {
-				categoryScores = categoryScoresService.Calculate(ratings, periods)
+				categoryScores = categoryScoresService.GetScores(ratings, periods)
 			})
 
 			It("score should includes each categories", func() {
@@ -124,11 +124,11 @@ var _ = Describe("score calculating", func() {
 		}
 
 		When("calculating scores", func() {
-			var categoryScores []vo.CategoryScore
+			var categoryScores []vo.CategoryPeriodScores
 			categoryScoresService := services.NewCategoryScores(categories)
 
 			BeforeEach(func() {
-				categoryScores = categoryScoresService.Calculate(ratings, periods)
+				categoryScores = categoryScoresService.GetScores(ratings, periods)
 			})
 
 			It("score should includes each categories", func() {

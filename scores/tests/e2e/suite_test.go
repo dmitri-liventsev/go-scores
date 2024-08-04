@@ -9,12 +9,9 @@ import (
 	getbyperiods "go-scores/gen/get_by_periods"
 	getbytickets "go-scores/gen/get_by_tickets"
 	getoverall "go-scores/gen/get_overall"
-	get_by_categoriespb "go-scores/gen/grpc/get_by_categories/pb"
 	"go-scores/scores/interfaces/controllers"
 	"go-scores/scores/interfaces/grpc"
 	"goa.design/clue/log"
-	ggrpc "google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	"gorm.io/gorm"
 	"net"
 	"net/url"
@@ -23,7 +20,7 @@ import (
 )
 
 var DB *gorm.DB
-var client get_by_categoriespb.GetByCategoriesClient
+
 var _ = BeforeSuite(func(ctx context.Context) {
 	{
 		var err error
@@ -88,18 +85,6 @@ var _ = BeforeSuite(func(ctx context.Context) {
 		DeferCleanup(func() {
 			cancel()
 			wg.Wait()
-		})
-	}
-
-	{
-		conn, err := ggrpc.NewClient("localhost:8080", ggrpc.WithTransportCredentials(insecure.NewCredentials()))
-		if err != nil {
-			panic(err)
-		}
-		client = get_by_categoriespb.NewGetByCategoriesClient(conn)
-
-		DeferCleanup(func() {
-			_ = conn.Close()
 		})
 	}
 })
