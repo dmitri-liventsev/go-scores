@@ -13,7 +13,7 @@ type GetOverall struct {
 
 // Execute returns overall scores by period.
 func (q *GetOverall) Execute(start time.Time, end time.Time) (float32, error) {
-	ratings, err := q.RatingRepo.GetByPeriod(start, end)
+	ratings, err := q.RatingRepo.FindByPeriod(start, end)
 	if err != nil {
 		return 0, err
 	}

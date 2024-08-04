@@ -8,7 +8,7 @@ import (
 	"go-scores/scores/interfaces/controllers"
 )
 
-var _ = Describe("get scores by tickets", func() {
+var _ = Describe("get overall score by period", func() {
 	Context("given a week period", func() {
 		var client *getoverall.Client
 		var from, to string
@@ -35,7 +35,7 @@ var _ = Describe("get scores by tickets", func() {
 			})
 
 			It("should be correct", func() {
-				Expect(score).To(Equal(41.67595672607422))
+				Expect(score).To(Equal(float32(41.67595672607422)))
 			})
 		})
 	})

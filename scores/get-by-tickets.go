@@ -15,7 +15,7 @@ type GetByTickets struct {
 
 // Execute returns scores by categories.
 func (q *GetByTickets) Execute(start time.Time, end time.Time) ([]vo.TicketScore, []entities.Category, error) {
-	ratings, err := q.RatingRepo.GetByPeriod(start, end)
+	ratings, err := q.RatingRepo.FindByPeriod(start, end)
 	if err != nil {
 		return nil, nil, err
 	}

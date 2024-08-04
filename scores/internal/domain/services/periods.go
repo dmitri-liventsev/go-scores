@@ -19,6 +19,75 @@ func DividePeriods(start, end time.Time) []entities.Period {
 	return divideByDays(start, end)
 }
 
+func DevideByType(start, end time.Time, periodType string) []entities.Period {
+	switch periodType {
+	case pkgtime.PeriodTypeDay:
+		return divideByDays(start, end)
+	case pkgtime.PeriodTypeWeek:
+		return divideByWeeks(start, end)
+	case pkgtime.PeriodTypeMonth:
+		return divideByMonth(start, end)
+	case pkgtime.PeriodTypeYear:
+		return divideByYear(start, end)
+	}
+
+	return nil
+}
+
+func divideByYear(start, end time.Time) []entities.Period {
+	var periods []entities.Period
+	var endOfTheYear time.Time
+
+	startOfTheYear := start
+	daysToEndOfTheYear := pkgtime.DaysUntilEndOfYear(start)
+
+	id := 1
+	for {
+		endOfTheYear = startOfTheYear.AddDate(0, 0, daysToEndOfTheYear)
+		if endOfTheYear.After(end) {
+			endOfTheYear = end
+		}
+		periods = append(periods, entities.NewPeriod(id, startOfTheYear, endOfTheYear, pkgtime.PeriodTypeYear))
+		startOfTheYear = endOfTheYear.AddDate(0, 0, 1)
+
+		if endOfTheYear.Equal(end) {
+			break
+		}
+
+		daysToEndOfTheYear = pkgtime.DaysUntilEndOfYear(startOfTheYear)
+		id++
+	}
+
+	return periods
+}
+
+func divideByMonth(start, end time.Time) []entities.Period {
+	var periods []entities.Period
+	var endOfTheMonth time.Time
+
+	startOfTheMonth := start
+	daysToEndOfTheMonth := pkgtime.DaysUntilEndOfMonth(start)
+
+	id := 1
+	for {
+		endOfTheMonth = startOfTheMonth.AddDate(0, 0, daysToEndOfTheMonth)
+		if endOfTheMonth.After(end) {
+			endOfTheMonth = end
+		}
+		periods = append(periods, entities.NewPeriod(id, startOfTheMonth, endOfTheMonth, pkgtime.PeriodTypeMonth))
+		startOfTheMonth = endOfTheMonth.AddDate(0, 0, 1)
+
+		if endOfTheMonth.Equal(end) {
+			break
+		}
+
+		daysToEndOfTheMonth = pkgtime.DaysUntilEndOfMonth(startOfTheMonth)
+		id++
+	}
+
+	return periods
+}
+
 // divideByDays function to get an array of days between two dates.
 func divideByDays(start, end time.Time) []entities.Period {
 	var periods []entities.Period

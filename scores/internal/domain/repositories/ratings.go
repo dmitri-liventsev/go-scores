@@ -10,7 +10,8 @@ type Ratings struct {
 	db *gorm.DB
 }
 
-func (repo *Ratings) GetByPeriod(start, end time.Time) ([]entities.Rating, error) {
+// FindByPeriod find all entries between two dates.
+func (repo *Ratings) FindByPeriod(start, end time.Time) ([]entities.Rating, error) {
 	var result []entities.Rating
 	startTime := start.Format("2006-01-02") + "T00:00:00"
 	endTime := end.Format("2006-01-02") + "T23:59:59"
@@ -18,6 +19,14 @@ func (repo *Ratings) GetByPeriod(start, end time.Time) ([]entities.Rating, error
 	err := repo.db.Where("created_at >= ? AND created_at <= ?", startTime, endTime).Find(&result).Error
 
 	return result, err
+}
+
+// FindAll return all ratings.
+func (repo *Ratings) FindAll() ([]entities.Rating, error) {
+	var ratings []entities.Rating
+	err := repo.db.Order("created_at asc").Find(&ratings).Error
+
+	return ratings, err
 }
 
 func NewRatings(db *gorm.DB) Ratings {

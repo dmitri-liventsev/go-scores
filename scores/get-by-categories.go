@@ -22,7 +22,7 @@ func (q *GetByCategories) Execute(start time.Time, end time.Time) ([]vo.Category
 		return nil, nil, nil, err
 	}
 
-	ratings, err := q.RatingRepo.GetByPeriod(start, end)
+	ratings, err := q.RatingRepo.FindByPeriod(start, end)
 	if err != nil {
 		return nil, nil, nil, err
 	}

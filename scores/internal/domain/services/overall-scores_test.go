@@ -8,7 +8,7 @@ import (
 )
 
 var _ = Describe("score calculating for tickets", func() {
-	Context("given ratings list", func() {
+	Context("given ratings and categories  list", func() {
 		var ratings []entities.Rating
 
 		categories := []entities.Category{
