@@ -131,7 +131,7 @@ var _ = Service("get changes by periods", func() {
 		})
 		Result(func() {
 			Field(1, "meta", PeriodsMeta)
-			Field(2, "data", ArrayOf(PeriodScoreChange))
+			Field(2, "data", ArrayOf(PeriodScoreDelta))
 			Required("meta", "data")
 		})
 		HTTP(func() {
@@ -148,7 +148,7 @@ var _ = Service("get changes by periods", func() {
 			Response(CodeOK, func() {
 				Message(func() {
 					Field(1, "meta", PeriodsMeta)
-					Field(2, "data", ArrayOf(PeriodScoreChange))
+					Field(2, "data", ArrayOf(PeriodScoreDelta))
 				})
 			})
 		})
@@ -199,9 +199,9 @@ var CategoryScoreDetail = Type("CategoryScoreDetail", func() {
 	Field(2, "score", Float32)
 })
 
-var PeriodScoreChange = Type("PeriodScoreChange", func() {
+var PeriodScoreDelta = Type("PeriodScoreDelta", func() {
 	Field(1, "period_id", Int)
-	Field(2, "score_diff", Float32)
+	Field(2, "score_delta", Float32)
 })
 
 // Define a type for CategoryMeta data

@@ -24,7 +24,7 @@ message GetChangesByPeriodsRequest {
 
 message GetChangesByPeriodsResponse {
 	PeriodsMeta meta = 1;
-	repeated PeriodScoreChange data = 2;
+	repeated PeriodScoreDelta data = 2;
 }
 
 message PeriodsMeta {
@@ -37,7 +37,7 @@ message Period {
 	optional sint64 end = 4;
 }
 
-message PeriodScoreChange {
+message PeriodScoreDelta {
 	optional sint32 period_id = 1;
-	optional float score_diff = 2;
+	optional float score_delta = 2;
 }

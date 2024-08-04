@@ -33,10 +33,10 @@ func NewGetChangesByPeriodsResult(message *get_changes_by_periodspb.GetChangesBy
 		result.Meta = protobufGetChangesByPeriodspbPeriodsMetaToGetchangesbyperiodsPeriodsMeta(message.Meta)
 	}
 	if message.Data != nil {
-		result.Data = make([]*getchangesbyperiods.PeriodScoreChange, len(message.Data))
+		result.Data = make([]*getchangesbyperiods.PeriodScoreDelta, len(message.Data))
 		for i, val := range message.Data {
-			result.Data[i] = &getchangesbyperiods.PeriodScoreChange{
-				ScoreDiff: val.ScoreDiff,
+			result.Data[i] = &getchangesbyperiods.PeriodScoreDelta{
+				ScoreDelta: val.ScoreDelta,
 			}
 			if val.PeriodId != nil {
 				periodID := int(*val.PeriodId)

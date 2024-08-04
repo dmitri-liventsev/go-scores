@@ -31,10 +31,10 @@ func NewProtoGetChangesByPeriodsResponse(result *getchangesbyperiods.GetChangesB
 		message.Meta = svcGetchangesbyperiodsPeriodsMetaToGetChangesByPeriodspbPeriodsMeta(result.Meta)
 	}
 	if result.Data != nil {
-		message.Data = make([]*get_changes_by_periodspb.PeriodScoreChange, len(result.Data))
+		message.Data = make([]*get_changes_by_periodspb.PeriodScoreDelta, len(result.Data))
 		for i, val := range result.Data {
-			message.Data[i] = &get_changes_by_periodspb.PeriodScoreChange{
-				ScoreDiff: val.ScoreDiff,
+			message.Data[i] = &get_changes_by_periodspb.PeriodScoreDelta{
+				ScoreDelta: val.ScoreDelta,
 			}
 			if val.PeriodID != nil {
 				periodID := int32(*val.PeriodID)

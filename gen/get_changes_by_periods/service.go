@@ -44,7 +44,7 @@ type GetChangesByPeriodsPayload struct {
 // service getChangesByPeriods method.
 type GetChangesByPeriodsResult struct {
 	Meta *PeriodsMeta
-	Data []*PeriodScoreChange
+	Data []*PeriodScoreDelta
 }
 
 type Period struct {
@@ -53,9 +53,9 @@ type Period struct {
 	End   *int64
 }
 
-type PeriodScoreChange struct {
-	PeriodID  *int
-	ScoreDiff *float32
+type PeriodScoreDelta struct {
+	PeriodID   *int
+	ScoreDelta *float32
 }
 
 type PeriodsMeta struct {

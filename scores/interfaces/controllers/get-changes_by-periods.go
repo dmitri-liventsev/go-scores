@@ -46,15 +46,15 @@ func (s *getChangesByPeriodssrvc) transformMeta(periods []entities.Period) *getb
 	}
 }
 
-func (s *getChangesByPeriodssrvc) transformData(scoreDeltas []vo.ScoreDelta) []*getbyperiods.PeriodScoreChange {
-	scoreDiff := make([]*getbyperiods.PeriodScoreChange, len(scoreDeltas))
+func (s *getChangesByPeriodssrvc) transformData(scoreDeltas []vo.ScoreDelta) []*getbyperiods.PeriodScoreDelta {
+	scoreDiff := make([]*getbyperiods.PeriodScoreDelta, len(scoreDeltas))
 	for i, p := range scoreDeltas {
 		pID := p.PeriodID.ToInt()
 		score := p.Delta
 
-		scoreDiff[i] = &getbyperiods.PeriodScoreChange{
-			PeriodID:  &pID,
-			ScoreDiff: &score,
+		scoreDiff[i] = &getbyperiods.PeriodScoreDelta{
+			PeriodID:   &pID,
+			ScoreDelta: &score,
 		}
 	}
 

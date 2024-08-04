@@ -42,9 +42,9 @@ var _ = Describe("get scores evolution by periods", func() {
 			It("data have correct delta", func() {
 				tolerance := 0.0001
 
-				Expect(result.Data[0].ScoreDiff).To(HaveValue(BeNumerically("~", float32(100), tolerance)))
-				Expect(result.Data[1].ScoreDiff).To(HaveValue(BeNumerically("~", float32(3.3730597496032715), tolerance)))
-				Expect(result.Data[2].ScoreDiff).To(HaveValue(BeNumerically("~", float32(-5.912367820739746), tolerance)))
+				Expect(result.Data[0].ScoreDelta).To(HaveValue(BeNumerically("~", float32(100), tolerance)))
+				Expect(result.Data[1].ScoreDelta).To(HaveValue(BeNumerically("~", float32(3.3730597496032715), tolerance)))
+				Expect(result.Data[2].ScoreDelta).To(HaveValue(BeNumerically("~", float32(-5.912367820739746), tolerance)))
 			})
 		})
 	})
