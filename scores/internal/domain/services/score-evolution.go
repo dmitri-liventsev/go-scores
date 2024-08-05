@@ -7,11 +7,12 @@ import (
 	"sort"
 )
 
+// ScoreEvolution calculates score changes between periods.
 type ScoreEvolution struct {
 	overallScoreCalculator OverallScore
 }
 
-// Calculate returns list of score deltas between periods
+// Calculate returns list of score deltas between periods.
 func (s ScoreEvolution) Calculate(ratings []entities.Rating, periods []entities.Period) []vo.ScoreDelta {
 	ratingsByPeriodMap := s.getRatingsByPeriodMap(ratings, periods)
 	scoresByPeriodMap := s.getScoresByPeriodMap(ratingsByPeriodMap, periods)
@@ -99,6 +100,7 @@ func (s ScoreEvolution) calculateEvolution(scoresPerPeriod []vo.ScorePeriod) []v
 	return result
 }
 
+// NewScoreEvolution returns new ScoreEvolution instance.
 func NewScoreEvolution(categories []entities.Category) ScoreEvolution {
 	return ScoreEvolution{
 		overallScoreCalculator: NewOverallScore(categories),

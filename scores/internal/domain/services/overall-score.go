@@ -5,11 +5,13 @@ import (
 	vo "go-scores/scores/internal/domain/value-objects"
 )
 
+// OverallScore calculates overall score for ratings list.
 type OverallScore struct {
 	categories []entities.Category
 	calculator ScoreCalculator
 }
 
+// GetScore calculates overall score for ratings list.
 func (o OverallScore) GetScore(ratings []entities.Rating) float32 {
 	categoryMap := o.getCategoryMap(ratings)
 	if len(categoryMap) == 0 {
@@ -38,7 +40,7 @@ func (o OverallScore) getCategoryMap(ratings []entities.Rating) map[vo.CategoryI
 	return result
 }
 
-// NewOverallScore returns new OverallScore instance
+// NewOverallScore returns new OverallScore instance.
 func NewOverallScore(categories []entities.Category) OverallScore {
 	return OverallScore{
 		categories: categories,

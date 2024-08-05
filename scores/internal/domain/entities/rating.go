@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// Rating contains who when and how rate a ticket.
 type Rating struct {
 	ID         uint          `gorm:"primaryKey;autoIncrement"`
 	Value      int           `gorm:"column:rating;not null"`
@@ -15,10 +16,12 @@ type Rating struct {
 	CreatedAt  time.Time     `gorm:"column:created_at;autoCreateTime"`
 }
 
+// TableName implementation of Tabler interface.
 func (Rating) TableName() string {
 	return "ratings"
 }
 
+// NewRating returns new Rating instance.
 func NewRating(id int, value int, categoryId int, ticketId int, createdAt time.Time) Rating {
 	return Rating{
 		ID:         uint(id),

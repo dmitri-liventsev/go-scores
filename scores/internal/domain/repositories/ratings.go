@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// Ratings repository.
 type Ratings struct {
 	db *gorm.DB
 }

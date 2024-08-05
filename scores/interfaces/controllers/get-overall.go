@@ -15,7 +15,7 @@ type getOverallsrvc struct {
 	query scores.GetOverall
 }
 
-// Get the overall aggregate score for a specified period.
+// GetOverallScore Get the overall aggregate score for a specified period.
 func (s *getOverallsrvc) GetOverallScore(ctx context.Context, p *getoverall.GetOverallScorePayload) (res float32, err error) {
 	layout := "2006-01-02"
 

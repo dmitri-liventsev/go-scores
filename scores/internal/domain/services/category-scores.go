@@ -7,6 +7,7 @@ import (
 	"sort"
 )
 
+// CategoryScores aggregates ratings by category.
 type CategoryScores struct {
 	categories []entities.Category
 	calculator ScoreCalculator

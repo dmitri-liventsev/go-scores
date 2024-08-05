@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-// getByCategories implementation. Separate interface layer from domain
+// getByCategories implementation. Separate interface layer from domain.
 type getByCategories struct {
 	query scores.GetByCategories
 }

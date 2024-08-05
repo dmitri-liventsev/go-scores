@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// DividePeriods function to get periods between two dates.
+// DividePeriods function to get periods between two dates. Period type will be determined automatically daily or weekly.
 func DividePeriods(start, end time.Time) []entities.Period {
 	if end.Before(start) {
 		return nil
@@ -19,7 +19,8 @@ func DividePeriods(start, end time.Time) []entities.Period {
 	return divideByDays(start, end)
 }
 
-func DevideByType(start, end time.Time, periodType string) []entities.Period {
+// DivideByType function to get periods between two dates by specific type.
+func DivideByType(start, end time.Time, periodType string) []entities.Period {
 	switch periodType {
 	case pkgtime.PeriodTypeDay:
 		return divideByDays(start, end)

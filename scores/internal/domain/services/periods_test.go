@@ -90,7 +90,7 @@ var _ = Describe("divide period by months", func() {
 		When("dividing periods to smaller periods", func() {
 			date1 := time.Date(2023, time.August, 15, 0, 0, 0, 0, time.UTC)
 			date2 := time.Date(2024, time.August, 30, 0, 0, 0, 0, time.UTC)
-			periods := services.DevideByType(date1, date2, pkgtime.PeriodTypeMonth)
+			periods := services.DivideByType(date1, date2, pkgtime.PeriodTypeMonth)
 
 			It("should includes all weeks", func() {
 				Expect(periods).To(HaveLen(13))
@@ -178,7 +178,7 @@ var _ = Describe("divide period by years", func() {
 		When("dividing periods to smaller periods", func() {
 			date1 := time.Date(2019, time.August, 15, 0, 0, 0, 0, time.UTC)
 			date2 := time.Date(2022, time.August, 30, 0, 0, 0, 0, time.UTC)
-			periods := services.DevideByType(date1, date2, pkgtime.PeriodTypeYear)
+			periods := services.DivideByType(date1, date2, pkgtime.PeriodTypeYear)
 
 			It("should includes all weeks", func() {
 				Expect(periods).To(HaveLen(4))

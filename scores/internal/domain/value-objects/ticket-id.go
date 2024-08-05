@@ -5,8 +5,10 @@ import (
 	"errors"
 )
 
+// TicketID ticket primary key.
 type TicketID int
 
+// Scan implementation of Scanner interface.
 func (c *TicketID) Scan(value interface{}) error {
 	if value == nil {
 		*c = 0
@@ -20,14 +22,17 @@ func (c *TicketID) Scan(value interface{}) error {
 	return nil
 }
 
+// Value implementation of Valuer interface.
 func (c TicketID) Value() (driver.Value, error) {
 	return int(c), nil
 }
 
-func NewTicketID(id int) TicketID {
-	return TicketID(id)
-}
-
+// ToInt converting value object to int value.
 func (c TicketID) ToInt() int {
 	return int(c)
+}
+
+// NewTicketID returns new TicketID instance.
+func NewTicketID(id int) TicketID {
+	return TicketID(id)
 }

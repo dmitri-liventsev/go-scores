@@ -6,11 +6,13 @@ import (
 	"sort"
 )
 
+// TicketScores aggregates scores by tickets.
 type TicketScores struct {
 	categories []entities.Category
 	calculator ScoreCalculator
 }
 
+// GetScores aggregates scores by tickets.
 func (t TicketScores) GetScores(ratings []entities.Rating) []vo.TicketScore {
 	ticketCategoryMap := t.getTicketCategoryMap(ratings)
 

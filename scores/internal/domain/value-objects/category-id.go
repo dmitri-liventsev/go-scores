@@ -5,8 +5,10 @@ import (
 	"errors"
 )
 
+// CategoryID category primary key
 type CategoryID int
 
+// Scan implementation of Scanner interface.
 func (c *CategoryID) Scan(value interface{}) error {
 	if value == nil {
 		*c = 0
@@ -20,14 +22,17 @@ func (c *CategoryID) Scan(value interface{}) error {
 	return nil
 }
 
+// Value implementation of Valuer interface.
 func (c CategoryID) Value() (driver.Value, error) {
 	return int(c), nil
 }
 
-func NewCategoryID(id int) CategoryID {
-	return CategoryID(id)
-}
-
+// ToInt converting value object to int value.
 func (c CategoryID) ToInt() int {
 	return int(c)
+}
+
+// NewCategoryID returns new CategoryID instance.
+func NewCategoryID(id int) CategoryID {
+	return CategoryID(id)
 }

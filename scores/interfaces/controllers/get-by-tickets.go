@@ -12,7 +12,6 @@ import (
 )
 
 // get by tickets service example implementation.
-// The example methods log the requests and return zero values.
 type getByTicketssrvc struct {
 	query scores.GetByTickets
 }

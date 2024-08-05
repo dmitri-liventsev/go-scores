@@ -14,15 +14,7 @@ type Period struct {
 	Type  string
 }
 
-func (p Period) GetType() string {
-	if pkgtime.DaysBetween(p.Start, p.End) == 0 {
-		return pkgtime.PeriodTypeDay
-	} else {
-		return pkgtime.PeriodTypeWeek
-	}
-}
-
-// GetInvariant get period invariant
+// GetInvariant get period invariant.
 func (p Period) GetInvariant() string {
 	return pkgtime.GetPeriodInvariant(p.Start, p.Type)
 }
@@ -32,7 +24,7 @@ func (p Period) IsDateBetween(date time.Time) bool {
 	return pkgtime.IsDateBetween(date, p.Start, p.End)
 }
 
-// NewPeriod returns new period instance
+// NewPeriod returns new period instance.
 func NewPeriod(id int, start, end time.Time, typ string) Period {
 	return Period{
 		ID:    vo.NewPeriodID(id),

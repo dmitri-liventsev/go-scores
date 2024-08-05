@@ -32,18 +32,6 @@ func (s ScoreCalculator) Calculate(avg float32, categoryId vo.CategoryID) *float
 	return &result
 }
 
-func (s ScoreCalculator) Calculate2(avg float32, categoryId vo.CategoryID) *float32 {
-	var result float32
-	exponent := s.categoryWeights[categoryId] + 0.1
-	if avg <= 1 || exponent < 0.5 {
-		result = float32(avg / MaxScore * exponent * 100)
-	} else {
-		result = float32(s.min(math.Pow(float64(avg), float64(exponent)), MaxScore) / MaxScore * 100)
-	}
-
-	return &result
-}
-
 // CalculateRatingsScore returns average score for set of ratings based on category weight.
 // NB! All ratings should be from the same category.
 func (s ScoreCalculator) CalculateRatingsScore(ratings []int, categoryID vo.CategoryID) *float32 {

@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// GetChangesByPeriods returns score deltas by period
+// GetChangesByPeriods returns score deltas by period.
 type GetChangesByPeriods struct {
 	RatingRepo   repositories.Ratings
 	CategoryRepo repositories.Categories
@@ -32,7 +32,7 @@ func (q *GetChangesByPeriods) Execute(periodType string) ([]vo.ScoreDelta, []ent
 
 	start := ratings[0].CreatedAt
 	end := time.Now()
-	periods := services.DevideByType(start, end, periodType)
+	periods := services.DivideByType(start, end, periodType)
 
 	service := services.NewScoreEvolution(categories)
 	scoreDeltas := service.Calculate(ratings, periods)

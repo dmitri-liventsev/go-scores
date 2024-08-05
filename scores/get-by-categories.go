@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// GetByCategories query to get scores grouped by category
+// GetByCategories query to get scores grouped by category.
 type GetByCategories struct {
 	RatingRepo   repositories.Ratings
 	CategoryRepo repositories.Categories
