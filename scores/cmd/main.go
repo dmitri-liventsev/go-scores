@@ -48,7 +48,7 @@ func main() {
 	log.Print(ctx, log.KV{K: "http-port", V: *httpPortF})
 
 	//Initialize DB
-	dsn := "../database.db"
+	dsn := "../../database.db"
 	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf(ctx, err, "Failed to connect to the database")
@@ -110,7 +110,7 @@ func main() {
 	switch *hostF {
 	case "localhost":
 		{
-			addr := "grpc://localhost:8080"
+			addr := "grpc://0.0.0.0:8080"
 			u, err := url.Parse(addr)
 			if err != nil {
 				log.Fatalf(ctx, err, "invalid URL %#v\n", addr)

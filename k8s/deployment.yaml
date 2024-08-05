@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scores-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scores
+  template:
+    metadata:
+      labels:
+        app: scores
+    spec:
+      containers:
+        - name: scores-container
+          image: dmitriliventsev/scores:latest
+          ports:
+            - containerPort: 8080

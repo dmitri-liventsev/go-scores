@@ -12,7 +12,7 @@ import (
 
 // get by periods service example implementation.
 type getChangesByPeriodssrvc struct {
-	query scores.GetByPeriods
+	query scores.GetChangesByPeriods
 }
 
 // GetChangesByPeriods Get the score change from a selected period over the previous period.
@@ -64,7 +64,7 @@ func (s *getChangesByPeriodssrvc) transformData(scoreDeltas []vo.ScoreDelta) []*
 // NewGetByPeriods returns the get by periods service implementation.
 func NewGetByPeriods(db *gorm.DB) getbyperiods.Service {
 	return &getChangesByPeriodssrvc{
-		query: scores.NewGetByPeriods(
+		query: scores.NewGetChangesByPeriods(
 			repositories.NewRatings(db),
 			repositories.NewCategories(db),
 		),

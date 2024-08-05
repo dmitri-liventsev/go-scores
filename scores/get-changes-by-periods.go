@@ -8,14 +8,14 @@ import (
 	"time"
 )
 
-// GetByPeriods returns score deltas by period
-type GetByPeriods struct {
+// GetChangesByPeriods returns score deltas by period
+type GetChangesByPeriods struct {
 	RatingRepo   repositories.Ratings
 	CategoryRepo repositories.Categories
 }
 
 // Execute returns score deltas by period.
-func (q *GetByPeriods) Execute(periodType string) ([]vo.ScoreDelta, []entities.Period, error) {
+func (q *GetChangesByPeriods) Execute(periodType string) ([]vo.ScoreDelta, []entities.Period, error) {
 	ratings, err := q.RatingRepo.FindAll()
 	if err != nil {
 		return nil, nil, err
@@ -40,9 +40,9 @@ func (q *GetByPeriods) Execute(periodType string) ([]vo.ScoreDelta, []entities.P
 	return scoreDeltas, periods, nil
 }
 
-// NewGetByPeriods returns new GetByPeriods query instance.
-func NewGetByPeriods(ratingRepo repositories.Ratings, categoryRepo repositories.Categories) GetByPeriods {
-	return GetByPeriods{
+// NewGetChangesByPeriods returns new GetChangesByPeriods query instance.
+func NewGetChangesByPeriods(ratingRepo repositories.Ratings, categoryRepo repositories.Categories) GetChangesByPeriods {
+	return GetChangesByPeriods{
 		RatingRepo:   ratingRepo,
 		CategoryRepo: categoryRepo,
 	}
