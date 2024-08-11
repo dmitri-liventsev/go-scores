@@ -11,7 +11,7 @@ func DividePeriods(start, end time.Time) []entities.Period {
 	if end.Before(start) {
 		return nil
 	}
-	daysBetween := pkgtime.DaysBetween(start, end)
+	daysBetween := pkgtime.DaysBetween(start, end) + 1
 	if daysBetween > 30 {
 		return divideByWeeks(start, end)
 	}

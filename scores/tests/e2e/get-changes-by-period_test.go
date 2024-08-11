@@ -49,7 +49,7 @@ var _ = Describe("get scores by categories", func() {
 			})
 
 			It("should return data", func() {
-				Expect(res.Data).To(HaveLen(133))
+				Expect(res.Data).To(HaveLen(getNumberOfMonths()))
 			})
 		})
 	})

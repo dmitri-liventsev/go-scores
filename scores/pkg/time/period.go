@@ -17,7 +17,7 @@ func DaysBetween(a, b time.Time) int {
 	}
 	days += b.YearDay()
 
-	return days + 1
+	return days
 }
 
 // GetPeriodInvariant Get period invariant.
@@ -47,9 +47,8 @@ func DaysUntilEndOfMonth(t time.Time) int {
 	year, month, _ := t.Date()
 	firstDayNextMonth := time.Date(year, month+1, 1, 0, 0, 0, 0, t.Location())
 	lastDayOfMonth := firstDayNextMonth.AddDate(0, 0, -1)
-	daysUntilEnd := lastDayOfMonth.Sub(t).Hours() / 24
 
-	return int(daysUntilEnd)
+	return DaysBetween(t, lastDayOfMonth)
 }
 
 // DaysUntilEndOfYear returns number of days until end of the month.
@@ -57,7 +56,6 @@ func DaysUntilEndOfYear(t time.Time) int {
 	year, _, _ := t.Date()
 	firstDayNextYear := time.Date(year+1, 1, 1, 0, 0, 0, 0, t.Location())
 	lastDayOfYear := firstDayNextYear.AddDate(0, 0, -1)
-	daysUntilEnd := lastDayOfYear.Sub(t).Hours() / 24
 
-	return int(daysUntilEnd)
+	return DaysBetween(t, lastDayOfYear)
 }

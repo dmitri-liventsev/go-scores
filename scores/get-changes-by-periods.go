@@ -31,7 +31,7 @@ func (q *GetChangesByPeriods) Execute(periodType string) ([]vo.ScoreDelta, []ent
 	}
 
 	start := ratings[0].CreatedAt
-	end := time.Now()
+	end := time.Now().UTC()
 	periods := services.DivideByType(start, end, periodType)
 
 	service := services.NewScoreEvolution(categories)

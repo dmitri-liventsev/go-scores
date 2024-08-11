@@ -13,7 +13,7 @@ var _ = Describe("calculate days between two days", func() {
 		date2 := time.Date(2024, time.August, 1, 0, 0, 0, 0, time.UTC)
 
 		It("should return correct length", func() {
-			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(1))
+			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(0))
 		})
 	})
 
@@ -22,7 +22,7 @@ var _ = Describe("calculate days between two days", func() {
 		date2 := time.Date(2024, time.August, 2, 0, 0, 0, 0, time.UTC)
 
 		It("should return correct length", func() {
-			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(2))
+			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(1))
 		})
 	})
 
@@ -31,7 +31,7 @@ var _ = Describe("calculate days between two days", func() {
 		date2 := time.Date(2024, time.August, 10, 0, 0, 0, 0, time.UTC)
 
 		It("should return correct length", func() {
-			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(10))
+			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(9))
 		})
 	})
 
@@ -40,7 +40,7 @@ var _ = Describe("calculate days between two days", func() {
 		date2 := time.Date(2024, time.September, 1, 0, 0, 0, 0, time.UTC)
 
 		It("should return correct length", func() {
-			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(2))
+			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(1))
 		})
 	})
 
@@ -49,7 +49,7 @@ var _ = Describe("calculate days between two days", func() {
 		date2 := time.Date(2025, time.January, 1, 0, 0, 0, 0, time.UTC)
 
 		It("should return correct length", func() {
-			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(2))
+			Expect(pkgtime.DaysBetween(date1, date2)).To(Equal(1))
 		})
 	})
 })

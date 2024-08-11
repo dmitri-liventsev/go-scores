@@ -48,7 +48,7 @@ var _ = Describe("divide period by weeks", func() {
 				Expect(periods).To(HaveLen(5))
 			})
 
-			It("should be divided by days", func() {
+			It("should be divided by weeks", func() {
 				for i := 0; i <= 4; i++ {
 					Expect(periods[i].Type).To(Equal(pkgtime.PeriodTypeWeek), fmt.Sprintf("index %d", i))
 				}
@@ -96,7 +96,7 @@ var _ = Describe("divide period by months", func() {
 				Expect(periods).To(HaveLen(13))
 			})
 
-			It("should be divided by days", func() {
+			It("should be divided by months", func() {
 				for i := 0; i <= 12; i++ {
 					Expect(periods[i].Type).To(Equal(pkgtime.PeriodTypeMonth), fmt.Sprintf("index %d", i))
 				}
@@ -184,7 +184,7 @@ var _ = Describe("divide period by years", func() {
 				Expect(periods).To(HaveLen(4))
 			})
 
-			It("should be divided by days", func() {
+			It("should be divided by months", func() {
 				for i := 0; i <= 3; i++ {
 					Expect(periods[i].Type).To(Equal(pkgtime.PeriodTypeYear), fmt.Sprintf("index %d", i))
 				}
