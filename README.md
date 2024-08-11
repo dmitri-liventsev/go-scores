@@ -51,7 +51,7 @@ For periods longer than one month weekly aggregates should be returned instead o
 * **scheme**: http 
 
 #### Request Message:
-```json
+```json5
 {
   "from": "2019-08-01", //Y-m-d
   "to": "2019-08-07"    //Y-m-d
@@ -60,7 +60,7 @@ For periods longer than one month weekly aggregates should be returned instead o
 
 #### Response Message:
 
-```json
+```json5
 {
   "meta": {
     "periods": [
@@ -121,7 +121,7 @@ E.g. what aggregate category scores tickets have within defined rating time rang
 * **scheme**: http 
 
 Request Message:
-```json
+```json5
 {
   "from": "2019-08-01", //Y-m-d
   "to": "2019-08-07"    //Y-m-d
@@ -129,7 +129,7 @@ Request Message:
 ```
 
 #### Response Message:
-```json
+```json5
 {
   "meta": {
     "categories": [
@@ -188,14 +188,14 @@ E.g. current week vs. previous week or December vs. January change in percentage
 * **scheme**: http 
 
 Request Message:
-```json
+```json5
 {
   "period": "week", //Enum ["week", "month", "year"]
 }
 ```
 
 #### Response Message:
-```json
+```json5
 {
    "meta": {
       "periods": [
@@ -238,7 +238,7 @@ E.g. the overall score over past week has been 96%.
 * **scheme**: http 
 
 Request Message:
-```json
+```json5
 {
   "from": "2019-08-01", //Y-m-d
   "to": "2019-08-07"    //Y-m-d
@@ -250,4 +250,11 @@ Request Message:
 {
   "field": 41.5
 }
+```
+
+## Testing
+ Install ginkgo: https://onsi.github.io/ginkgo/#getting-started
+ 
+```shell
+ginkgo -r
 ```
