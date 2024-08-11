@@ -38,6 +38,9 @@ func DecodeGetAggregatedScoresRequest(ctx context.Context, v any, md metadata.MD
 		if message, ok = v.(*get_by_categoriespb.GetAggregatedScoresRequest); !ok {
 			return nil, goagrpc.ErrInvalidType("get by categories", "getAggregatedScores", "*get_by_categoriespb.GetAggregatedScoresRequest", v)
 		}
+		if err := ValidateGetAggregatedScoresRequest(message); err != nil {
+			return nil, err
+		}
 	}
 	var payload *getbycategories.GetAggregatedScoresPayload
 	{

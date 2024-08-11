@@ -23,7 +23,7 @@ func BuildGetChangesByPeriodsPayload(getChangesByPeriodsGetChangesByPeriodsMessa
 		if getChangesByPeriodsGetChangesByPeriodsMessage != "" {
 			err = json.Unmarshal([]byte(getChangesByPeriodsGetChangesByPeriodsMessage), &message)
 			if err != nil {
-				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"period\": \"Ab sed recusandae qui ex molestiae consectetur.\"\n   }'")
+				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"period\": \"Exercitationem dolores praesentium iure accusantium sed debitis.\"\n   }'")
 			}
 		}
 	}

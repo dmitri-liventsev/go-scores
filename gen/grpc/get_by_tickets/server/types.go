@@ -10,6 +10,8 @@ package server
 import (
 	getbytickets "go-scores/gen/get_by_tickets"
 	get_by_ticketspb "go-scores/gen/grpc/get_by_tickets/pb"
+
+	goa "goa.design/goa/v3/pkg"
 )
 
 // NewGetAggregatedScoresByTicketPayload builds the payload of the
@@ -54,6 +56,16 @@ func NewProtoGetAggregatedScoresByTicketResponse(result *getbytickets.GetAggrega
 		}
 	}
 	return message
+}
+
+// ValidateGetAggregatedScoresByTicketRequest runs the validations defined on
+// GetAggregatedScoresByTicketRequest.
+func ValidateGetAggregatedScoresByTicketRequest(message *get_by_ticketspb.GetAggregatedScoresByTicketRequest) (err error) {
+	err = goa.MergeErrors(err, goa.ValidateFormat("message.from", message.From, goa.FormatDate))
+	err = goa.MergeErrors(err, goa.ValidatePattern("message.from", message.From, "^\\d{4}-\\d{2}-\\d{2}$"))
+	err = goa.MergeErrors(err, goa.ValidateFormat("message.to", message.To, goa.FormatDate))
+	err = goa.MergeErrors(err, goa.ValidatePattern("message.to", message.To, "^\\d{4}-\\d{2}-\\d{2}$"))
+	return
 }
 
 // svcGetbyticketsTicketMetaToGetByTicketspbTicketMeta builds a value of type

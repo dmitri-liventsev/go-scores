@@ -23,7 +23,7 @@ func BuildGetAggregatedScoresPayload(getByCategoriesGetAggregatedScoresMessage s
 		if getByCategoriesGetAggregatedScoresMessage != "" {
 			err = json.Unmarshal([]byte(getByCategoriesGetAggregatedScoresMessage), &message)
 			if err != nil {
-				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"from\": \"Rem consequuntur magnam suscipit.\",\n      \"to\": \"Qui illum accusantium.\"\n   }'")
+				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"from\": \"1973-07-11\",\n      \"to\": \"2007-06-03\"\n   }'")
 			}
 		}
 	}

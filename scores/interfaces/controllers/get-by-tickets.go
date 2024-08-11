@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	getbytickets "go-scores/gen/get_by_tickets"
 	"go-scores/scores"
 	"go-scores/scores/internal/domain/entities"
@@ -28,6 +29,10 @@ func (s *getByTicketssrvc) GetAggregatedScoresByTicket(_ context.Context, p *get
 	to, err := time.Parse(layout, p.To)
 	if err != nil {
 		return nil, err
+	}
+
+	if from.After(to) {
+		return nil, fmt.Errorf("start date cant be before end date")
 	}
 
 	ticketScores, categories, err := s.query.Execute(from, to)

@@ -176,4 +176,54 @@ var _ = Describe("get scores by categories", func() {
 			)
 		})
 	})
+
+	Context("given not valid period", func() {
+		var client *getbycategories.Client
+		var from, to string
+		var err error
+
+		BeforeEach(func() {
+			endpoint := getbycategories.NewGetAggregatedScoresEndpoint(controllers.NewGetByCategories(DB))
+			client = getbycategories.NewClient(endpoint)
+		})
+
+		When("date format are not correct", func() {
+			from = "trololo"
+			to = "ololo"
+
+			BeforeEach(func(ctx context.Context) {
+				payload := getbycategories.GetAggregatedScoresPayload{
+					From: from,
+					To:   to,
+				}
+
+				_, err = client.GetAggregatedScores(ctx, &payload)
+
+			})
+
+			It("error should be returned", func() {
+				Expect(err).To(HaveOccurred())
+			})
+		})
+
+		When("start date after end date", func() {
+			from = "2020-01-01"
+			to = "2019-01-01"
+
+			BeforeEach(func(ctx context.Context) {
+				payload := getbycategories.GetAggregatedScoresPayload{
+					From: from,
+					To:   to,
+				}
+
+				_, err = client.GetAggregatedScores(ctx, &payload)
+
+			})
+
+			It("error should be returned", func() {
+				Expect(err).To(HaveOccurred())
+			})
+		})
+
+	})
 })

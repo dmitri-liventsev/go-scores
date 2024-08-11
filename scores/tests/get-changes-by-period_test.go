@@ -13,6 +13,7 @@ var _ = Describe("get scores evolution by periods", func() {
 	Context("given a week period type", func() {
 		var client *getbyperiods.Client
 		periodType := pkgtime.PeriodTypeWeek
+		numberOfWeeks := getNumberOfweeks()
 
 		BeforeEach(func() {
 			endpoint := getbyperiods.NewGetChangesByPeriodsEndpoint(controllers.NewGetByPeriods(DB))
@@ -32,11 +33,11 @@ var _ = Describe("get scores evolution by periods", func() {
 			})
 
 			It("meta should includes all periods", func() {
-				Expect(result.Meta.Periods).To(HaveLen(285))
+				Expect(result.Meta.Periods).To(HaveLen(numberOfWeeks))
 			})
 
 			It("data should includes all periods", func() {
-				Expect(result.Data).To(HaveLen(285))
+				Expect(result.Data).To(HaveLen(numberOfWeeks))
 			})
 
 			It("data have correct delta", func() {

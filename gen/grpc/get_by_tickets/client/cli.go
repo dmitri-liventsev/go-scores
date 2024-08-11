@@ -23,7 +23,7 @@ func BuildGetAggregatedScoresByTicketPayload(getByTicketsGetAggregatedScoresByTi
 		if getByTicketsGetAggregatedScoresByTicketMessage != "" {
 			err = json.Unmarshal([]byte(getByTicketsGetAggregatedScoresByTicketMessage), &message)
 			if err != nil {
-				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"from\": \"Similique cupiditate ut facilis.\",\n      \"to\": \"Quod vitae amet quos sint nulla.\"\n   }'")
+				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"from\": \"2004-10-23\",\n      \"to\": \"1988-12-02\"\n   }'")
 			}
 		}
 	}

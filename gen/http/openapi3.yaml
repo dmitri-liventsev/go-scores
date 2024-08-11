@@ -16,22 +16,26 @@ paths:
             parameters:
                 - name: from
                   in: path
-                  description: Start date (YYYY-MM-DD)
+                  description: Start date in YYYY-MM-DD format
                   required: true
                   schema:
                     type: string
-                    description: Start date (YYYY-MM-DD)
-                    example: Ut voluptatem alias eum et.
-                  example: Sit aperiam repellendus praesentium cupiditate voluptates dolore.
+                    description: Start date in YYYY-MM-DD format
+                    example: "1983-01-07"
+                    format: date
+                    pattern: ^\d{4}-\d{2}-\d{2}$
+                  example: "2005-12-31"
                 - name: to
                   in: path
-                  description: End date (YYYY-MM-DD)
+                  description: End date in YYYY-MM-DD format
                   required: true
                   schema:
                     type: string
-                    description: End date (YYYY-MM-DD)
-                    example: Quod nostrum rerum harum.
-                  example: Fuga accusantium voluptatibus sint esse.
+                    description: End date in YYYY-MM-DD format
+                    example: "1977-05-31"
+                    format: date
+                    pattern: ^\d{4}-\d{2}-\d{2}$
+                  example: "2000-12-14"
             responses:
                 "200":
                     description: OK response.
@@ -41,64 +45,56 @@ paths:
                                 $ref: '#/components/schemas/GetAggregatedScoresResponseBody'
                             example:
                                 data:
-                                    - category_id: 4491029240724093191
-                                      num_of_reviews: 2132083917128148711
+                                    - category_id: 6012716289030742144
+                                      num_of_reviews: 1693922704743648072
                                       periods:
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                      total_score: 0.35479164
-                                    - category_id: 4491029240724093191
-                                      num_of_reviews: 2132083917128148711
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                      total_score: 0.6612983
+                                    - category_id: 6012716289030742144
+                                      num_of_reviews: 1693922704743648072
                                       periods:
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                      total_score: 0.35479164
-                                    - category_id: 4491029240724093191
-                                      num_of_reviews: 2132083917128148711
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                      total_score: 0.6612983
+                                    - category_id: 6012716289030742144
+                                      num_of_reviews: 1693922704743648072
                                       periods:
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                      total_score: 0.35479164
-                                    - category_id: 4491029240724093191
-                                      num_of_reviews: 2132083917128148711
-                                      periods:
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                        - id: 4082569381962063184
-                                          score: 0.97634244
-                                      total_score: 0.35479164
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                        - id: 8266584712360546909
+                                          score: 0.8505106
+                                      total_score: 0.6612983
                                 meta:
                                     categories:
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
                                     periods:
-                                        - end: 1197696383953815086
-                                          id: 8497404033504113704
-                                          start: 1890042222440478675
-                                        - end: 1197696383953815086
-                                          id: 8497404033504113704
-                                          start: 1890042222440478675
-                                        - end: 1197696383953815086
-                                          id: 8497404033504113704
-                                          start: 1890042222440478675
+                                        - end: 8568520418160968230
+                                          id: 2293668282350108161
+                                          start: 5157908177095075073
+                                        - end: 8568520418160968230
+                                          id: 2293668282350108161
+                                          start: 5157908177095075073
+                                        - end: 8568520418160968230
+                                          id: 2293668282350108161
+                                          start: 5157908177095075073
     /overall/{from}/{to}:
         get:
             tags:
@@ -109,22 +105,26 @@ paths:
             parameters:
                 - name: from
                   in: path
-                  description: Start date (YYYY-MM-DD)
+                  description: Start date in YYYY-MM-DD format
                   required: true
                   schema:
                     type: string
-                    description: Start date (YYYY-MM-DD)
-                    example: Saepe quia et dicta nostrum fuga.
-                  example: Doloremque eos quia.
+                    description: Start date in YYYY-MM-DD format
+                    example: "1972-12-14"
+                    format: date
+                    pattern: ^\d{4}-\d{2}-\d{2}$
+                  example: "1980-10-11"
                 - name: to
                   in: path
-                  description: End date (YYYY-MM-DD)
+                  description: End date in YYYY-MM-DD format
                   required: true
                   schema:
                     type: string
-                    description: End date (YYYY-MM-DD)
-                    example: Inventore qui sequi in ut aliquam quidem.
-                  example: Ipsum velit.
+                    description: End date in YYYY-MM-DD format
+                    example: "1995-10-30"
+                    format: date
+                    pattern: ^\d{4}-\d{2}-\d{2}$
+                  example: "2002-01-13"
             responses:
                 "200":
                     description: OK response.
@@ -132,9 +132,9 @@ paths:
                         application/json:
                             schema:
                                 type: number
-                                example: 0.6957256
+                                example: 0.13589834
                                 format: float
-                            example: 0.5740165
+                            example: 0.25144383
     /periods/{period}:
         get:
             tags:
@@ -150,8 +150,8 @@ paths:
                   schema:
                     type: string
                     description: The period type (e.g., week, month, year)
-                    example: Tenetur expedita et est nemo.
-                  example: Iusto nulla neque tempora.
+                    example: At nostrum delectus sapiente accusamus.
+                  example: Consequuntur iure consequatur non quo est.
             responses:
                 "200":
                     description: OK response.
@@ -161,21 +161,18 @@ paths:
                                 $ref: '#/components/schemas/GetChangesByPeriodsResponseBody'
                             example:
                                 data:
-                                    - period_id: 8473324632709310893
-                                      score_delta: 0.3662448
-                                    - period_id: 8473324632709310893
-                                      score_delta: 0.3662448
+                                    - period_id: 1665803925861920822
+                                      score_delta: 0.47400105
+                                    - period_id: 1665803925861920822
+                                      score_delta: 0.47400105
                                 meta:
                                     periods:
-                                        - end: 1197696383953815086
-                                          id: 8497404033504113704
-                                          start: 1890042222440478675
-                                        - end: 1197696383953815086
-                                          id: 8497404033504113704
-                                          start: 1890042222440478675
-                                        - end: 1197696383953815086
-                                          id: 8497404033504113704
-                                          start: 1890042222440478675
+                                        - end: 8568520418160968230
+                                          id: 2293668282350108161
+                                          start: 5157908177095075073
+                                        - end: 8568520418160968230
+                                          id: 2293668282350108161
+                                          start: 5157908177095075073
     /tickets/{from}/{to}:
         get:
             tags:
@@ -186,22 +183,26 @@ paths:
             parameters:
                 - name: from
                   in: path
-                  description: Start date (YYYY-MM-DD)
+                  description: Start date in YYYY-MM-DD format
                   required: true
                   schema:
                     type: string
-                    description: Start date (YYYY-MM-DD)
-                    example: Esse numquam ut nihil deserunt voluptas possimus.
-                  example: Qui voluptatibus ullam magnam doloribus ab.
+                    description: Start date in YYYY-MM-DD format
+                    example: "1970-03-20"
+                    format: date
+                    pattern: ^\d{4}-\d{2}-\d{2}$
+                  example: "1982-07-15"
                 - name: to
                   in: path
-                  description: End date (YYYY-MM-DD)
+                  description: End date in YYYY-MM-DD format
                   required: true
                   schema:
                     type: string
-                    description: End date (YYYY-MM-DD)
-                    example: Ullam commodi corrupti.
-                  example: Ex eveniet qui similique.
+                    description: End date in YYYY-MM-DD format
+                    example: "1979-01-17"
+                    format: date
+                    pattern: ^\d{4}-\d{2}-\d{2}$
+                  example: "1990-10-25"
             responses:
                 "200":
                     description: OK response.
@@ -212,31 +213,37 @@ paths:
                             example:
                                 data:
                                     - categories:
-                                        - id: 1710535159820431455
-                                          score: 0.8122139
-                                        - id: 1710535159820431455
-                                          score: 0.8122139
-                                        - id: 1710535159820431455
-                                          score: 0.8122139
-                                      ticket_id: 103992884908679511
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                      ticket_id: 5260201506769468096
                                     - categories:
-                                        - id: 1710535159820431455
-                                          score: 0.8122139
-                                        - id: 1710535159820431455
-                                          score: 0.8122139
-                                        - id: 1710535159820431455
-                                          score: 0.8122139
-                                      ticket_id: 103992884908679511
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                      ticket_id: 5260201506769468096
+                                    - categories:
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                      ticket_id: 5260201506769468096
+                                    - categories:
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                        - id: 4316543418170283353
+                                          score: 0.23660873
+                                      ticket_id: 5260201506769468096
                                 meta:
                                     categories:
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                                        - id: 5397601470293070043
-                                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
+                                        - id: 5220825332390222813
+                                          name: Aut aut dignissimos.
 components:
     schemas:
         Category:
@@ -244,14 +251,14 @@ components:
             properties:
                 id:
                     type: integer
-                    example: 1361417186537344345
+                    example: 3603009084171084746
                     format: int64
                 name:
                     type: string
-                    example: Autem saepe est.
+                    example: Dicta voluptas sint.
             example:
-                id: 7790598893406560451
-                name: Et vel omnis quis et.
+                id: 1551382276131644896
+                name: Consequatur quis nihil qui deleniti.
         CategoryMeta:
             type: object
             properties:
@@ -260,86 +267,73 @@ components:
                     items:
                         $ref: '#/components/schemas/Category'
                     example:
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
                 periods:
                     type: array
                     items:
                         $ref: '#/components/schemas/Period'
                     example:
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
             example:
                 categories:
-                    - id: 5397601470293070043
-                      name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                    - id: 5397601470293070043
-                      name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                    - id: 5220825332390222813
+                      name: Aut aut dignissimos.
+                    - id: 5220825332390222813
+                      name: Aut aut dignissimos.
                 periods:
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
+                    - end: 8568520418160968230
+                      id: 2293668282350108161
+                      start: 5157908177095075073
+                    - end: 8568520418160968230
+                      id: 2293668282350108161
+                      start: 5157908177095075073
         CategoryScore:
             type: object
             properties:
                 category_id:
                     type: integer
-                    example: 8551840222778391412
+                    example: 4241820735742643704
                     format: int64
                 num_of_reviews:
                     type: integer
-                    example: 3606750195914589576
+                    example: 6967794541024011878
                     format: int64
                 periods:
                     type: array
                     items:
                         $ref: '#/components/schemas/ScorePeriod'
                     example:
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
                 total_score:
                     type: number
-                    example: 0.78024316
+                    example: 0.9634333
                     format: float
             example:
-                category_id: 322214221881136239
-                num_of_reviews: 2833191860888854123
+                category_id: 2204845935024044056
+                num_of_reviews: 3614220368603990369
                 periods:
-                    - id: 4082569381962063184
-                      score: 0.97634244
-                    - id: 4082569381962063184
-                      score: 0.97634244
-                    - id: 4082569381962063184
-                      score: 0.97634244
-                total_score: 0.3630078
+                    - id: 8266584712360546909
+                      score: 0.8505106
+                    - id: 8266584712360546909
+                      score: 0.8505106
+                    - id: 8266584712360546909
+                      score: 0.8505106
+                total_score: 0.700454
         GetAggregatedScoresByTicketResponseBody:
             type: object
             properties:
@@ -349,67 +343,59 @@ components:
                         $ref: '#/components/schemas/TicketScore'
                     example:
                         - categories:
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                          ticket_id: 103992884908679511
+                            - id: 4316543418170283353
+                              score: 0.23660873
+                            - id: 4316543418170283353
+                              score: 0.23660873
+                          ticket_id: 5260201506769468096
                         - categories:
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                          ticket_id: 103992884908679511
+                            - id: 4316543418170283353
+                              score: 0.23660873
+                            - id: 4316543418170283353
+                              score: 0.23660873
+                          ticket_id: 5260201506769468096
                         - categories:
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                            - id: 1710535159820431455
-                              score: 0.8122139
-                          ticket_id: 103992884908679511
+                            - id: 4316543418170283353
+                              score: 0.23660873
+                            - id: 4316543418170283353
+                              score: 0.23660873
+                          ticket_id: 5260201506769468096
                 meta:
                     $ref: '#/components/schemas/TicketMeta'
             example:
                 data:
                     - categories:
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                      ticket_id: 103992884908679511
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                      ticket_id: 5260201506769468096
                     - categories:
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                      ticket_id: 103992884908679511
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                      ticket_id: 5260201506769468096
                     - categories:
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                      ticket_id: 103992884908679511
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                      ticket_id: 5260201506769468096
+                    - categories:
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                      ticket_id: 5260201506769468096
                 meta:
                     categories:
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
             required:
                 - meta
                 - data
@@ -421,98 +407,80 @@ components:
                     items:
                         $ref: '#/components/schemas/CategoryScore'
                     example:
-                        - category_id: 4491029240724093191
-                          num_of_reviews: 2132083917128148711
+                        - category_id: 6012716289030742144
+                          num_of_reviews: 1693922704743648072
                           periods:
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                          total_score: 0.35479164
-                        - category_id: 4491029240724093191
-                          num_of_reviews: 2132083917128148711
+                            - id: 8266584712360546909
+                              score: 0.8505106
+                            - id: 8266584712360546909
+                              score: 0.8505106
+                            - id: 8266584712360546909
+                              score: 0.8505106
+                          total_score: 0.6612983
+                        - category_id: 6012716289030742144
+                          num_of_reviews: 1693922704743648072
                           periods:
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                          total_score: 0.35479164
-                        - category_id: 4491029240724093191
-                          num_of_reviews: 2132083917128148711
-                          periods:
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                          total_score: 0.35479164
-                        - category_id: 4491029240724093191
-                          num_of_reviews: 2132083917128148711
-                          periods:
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                            - id: 4082569381962063184
-                              score: 0.97634244
-                          total_score: 0.35479164
+                            - id: 8266584712360546909
+                              score: 0.8505106
+                            - id: 8266584712360546909
+                              score: 0.8505106
+                            - id: 8266584712360546909
+                              score: 0.8505106
+                          total_score: 0.6612983
                 meta:
                     $ref: '#/components/schemas/CategoryMeta'
             example:
                 data:
-                    - category_id: 4491029240724093191
-                      num_of_reviews: 2132083917128148711
+                    - category_id: 6012716289030742144
+                      num_of_reviews: 1693922704743648072
                       periods:
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                      total_score: 0.35479164
-                    - category_id: 4491029240724093191
-                      num_of_reviews: 2132083917128148711
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                      total_score: 0.6612983
+                    - category_id: 6012716289030742144
+                      num_of_reviews: 1693922704743648072
                       periods:
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                      total_score: 0.35479164
-                    - category_id: 4491029240724093191
-                      num_of_reviews: 2132083917128148711
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                      total_score: 0.6612983
+                    - category_id: 6012716289030742144
+                      num_of_reviews: 1693922704743648072
                       periods:
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                        - id: 4082569381962063184
-                          score: 0.97634244
-                      total_score: 0.35479164
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                        - id: 8266584712360546909
+                          score: 0.8505106
+                      total_score: 0.6612983
                 meta:
                     categories:
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
                     periods:
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
             required:
                 - meta
                 - data
@@ -524,37 +492,32 @@ components:
                     items:
                         $ref: '#/components/schemas/PeriodScoreDelta'
                     example:
-                        - period_id: 8473324632709310893
-                          score_delta: 0.3662448
-                        - period_id: 8473324632709310893
-                          score_delta: 0.3662448
-                        - period_id: 8473324632709310893
-                          score_delta: 0.3662448
-                        - period_id: 8473324632709310893
-                          score_delta: 0.3662448
+                        - period_id: 1665803925861920822
+                          score_delta: 0.47400105
+                        - period_id: 1665803925861920822
+                          score_delta: 0.47400105
+                        - period_id: 1665803925861920822
+                          score_delta: 0.47400105
                 meta:
                     $ref: '#/components/schemas/PeriodsMeta'
             example:
                 data:
-                    - period_id: 8473324632709310893
-                      score_delta: 0.3662448
-                    - period_id: 8473324632709310893
-                      score_delta: 0.3662448
-                    - period_id: 8473324632709310893
-                      score_delta: 0.3662448
-                    - period_id: 8473324632709310893
-                      score_delta: 0.3662448
+                    - period_id: 1665803925861920822
+                      score_delta: 0.47400105
+                    - period_id: 1665803925861920822
+                      score_delta: 0.47400105
+                    - period_id: 1665803925861920822
+                      score_delta: 0.47400105
+                    - period_id: 1665803925861920822
+                      score_delta: 0.47400105
                 meta:
                     periods:
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
             required:
                 - meta
                 - data
@@ -563,34 +526,34 @@ components:
             properties:
                 end:
                     type: integer
-                    example: 3800441515036508225
+                    example: 8602163163385538483
                     format: int64
                 id:
                     type: integer
-                    example: 1353773365129160248
+                    example: 869887245883899361
                     format: int64
                 start:
                     type: integer
-                    example: 4571099303353453811
+                    example: 2717867604247618881
                     format: int64
             example:
-                end: 1621121903284063634
-                id: 8290161809070450771
-                start: 8734984497928998525
+                end: 7767934547615867598
+                id: 2229361400933900284
+                start: 1457608652151410175
         PeriodScoreDelta:
             type: object
             properties:
                 period_id:
                     type: integer
-                    example: 3805367789875608657
+                    example: 5253350998118936739
                     format: int64
                 score_delta:
                     type: number
-                    example: 0.7919799
+                    example: 0.03294269
                     format: float
             example:
-                period_id: 2775142177214399516
-                score_delta: 0.36082894
+                period_id: 2339278259403466745
+                score_delta: 0.114049524
         PeriodsMeta:
             type: object
             properties:
@@ -599,34 +562,40 @@ components:
                     items:
                         $ref: '#/components/schemas/Period'
                     example:
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
-                        - end: 1197696383953815086
-                          id: 8497404033504113704
-                          start: 1890042222440478675
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
+                        - end: 8568520418160968230
+                          id: 2293668282350108161
+                          start: 5157908177095075073
             example:
                 periods:
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
-                    - end: 1197696383953815086
-                      id: 8497404033504113704
-                      start: 1890042222440478675
+                    - end: 8568520418160968230
+                      id: 2293668282350108161
+                      start: 5157908177095075073
+                    - end: 8568520418160968230
+                      id: 2293668282350108161
+                      start: 5157908177095075073
+                    - end: 8568520418160968230
+                      id: 2293668282350108161
+                      start: 5157908177095075073
+                    - end: 8568520418160968230
+                      id: 2293668282350108161
+                      start: 5157908177095075073
         ScorePeriod:
             type: object
             properties:
                 id:
                     type: integer
-                    example: 1836520026179155990
+                    example: 4065781817041910660
                     format: int64
                 score:
                     type: number
-                    example: 0.8439179
+                    example: 0.9440415
                     format: float
             example:
-                id: 2233211142139538476
-                score: 0.37822118
+                id: 1109815162701640899
+                score: 0.5477251
         TicketMeta:
             type: object
             properties:
@@ -635,22 +604,22 @@ components:
                     items:
                         $ref: '#/components/schemas/Category'
                     example:
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                        - id: 5397601470293070043
-                          name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
+                        - id: 5220825332390222813
+                          name: Aut aut dignissimos.
             example:
                 categories:
-                    - id: 5397601470293070043
-                      name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                    - id: 5397601470293070043
-                      name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                    - id: 5397601470293070043
-                      name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
-                    - id: 5397601470293070043
-                      name: Consectetur laudantium eligendi quaerat eum repellendus nihil.
+                    - id: 5220825332390222813
+                      name: Aut aut dignissimos.
+                    - id: 5220825332390222813
+                      name: Aut aut dignissimos.
+                    - id: 5220825332390222813
+                      name: Aut aut dignissimos.
         TicketScore:
             type: object
             properties:
@@ -659,25 +628,25 @@ components:
                     items:
                         $ref: '#/components/schemas/ScorePeriod'
                     example:
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
-                        - id: 1710535159820431455
-                          score: 0.8122139
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                        - id: 4316543418170283353
+                          score: 0.23660873
+                        - id: 4316543418170283353
+                          score: 0.23660873
                 ticket_id:
                     type: integer
-                    example: 3709426997462657840
+                    example: 7194702889252981560
                     format: int64
             example:
                 categories:
-                    - id: 1710535159820431455
-                      score: 0.8122139
-                    - id: 1710535159820431455
-                      score: 0.8122139
-                    - id: 1710535159820431455
-                      score: 0.8122139
-                ticket_id: 8035529858048472038
+                    - id: 4316543418170283353
+                      score: 0.23660873
+                    - id: 4316543418170283353
+                      score: 0.23660873
+                    - id: 4316543418170283353
+                      score: 0.23660873
+                ticket_id: 2069511118053354723
 tags:
     - name: get overall
       description: Overall aggregate score for a period

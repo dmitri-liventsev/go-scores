@@ -32,9 +32,9 @@ type GetOverallScoreRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Start date (YYYY-MM-DD)
+	// Start date in YYYY-MM-DD format
 	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
-	// End date (YYYY-MM-DD)
+	// End date in YYYY-MM-DD format
 	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
 }
 

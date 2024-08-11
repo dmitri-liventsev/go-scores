@@ -18,9 +18,9 @@ service GetOverall {
 }
 
 message GetOverallScoreRequest {
-	// Start date (YYYY-MM-DD)
+	// Start date in YYYY-MM-DD format
 	string from = 1;
-	// End date (YYYY-MM-DD)
+	// End date in YYYY-MM-DD format
 	string to = 2;
 }
 

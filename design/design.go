@@ -11,8 +11,14 @@ var _ = Service("get by categories", func() {
 	Method("getAggregatedScores", func() {
 		Description("Get aggregated scores for categories within a specified period.")
 		Payload(func() {
-			Field(1, "from", String, "Start date (YYYY-MM-DD)")
-			Field(2, "to", String, "End date (YYYY-MM-DD)")
+			Field(1, "from", String, "Start date (YYYY-MM-DD)", func() {
+				Format(FormatDate)
+				Pattern(`^\d{4}-\d{2}-\d{2}$`)
+			})
+			Field(2, "to", String, "End date (YYYY-MM-DD)", func() {
+				Format(FormatDate)
+				Pattern(`^\d{4}-\d{2}-\d{2}$`)
+			})
 			Required("from", "to")
 		})
 		Result(func() {
@@ -23,15 +29,31 @@ var _ = Service("get by categories", func() {
 		HTTP(func() {
 			GET("/categories/{from}/{to}")
 			Params(func() {
-				Param("from", String)
-				Param("to", String)
+				Param("from", String, func() {
+					Description("Start date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
+				Param("to", String, func() {
+					Description("End date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
 			})
 			Response(StatusOK)
 		})
 		GRPC(func() {
 			Message(func() {
-				Field(1, "from", String)
-				Field(2, "to", String)
+				Field(1, "from", String, func() {
+					Description("Start date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
+				Field(2, "to", String, func() {
+					Description("End date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
 			})
 
 			Response(CodeOK, func() {
@@ -52,8 +74,14 @@ var _ = Service("get by tickets", func() {
 	Method("getAggregatedScoresByTicket", func() {
 		Description("Get aggregate category scores by ticket for a specified period.")
 		Payload(func() {
-			Field(1, "from", String, "Start date (YYYY-MM-DD)")
-			Field(2, "to", String, "End date (YYYY-MM-DD)")
+			Field(1, "from", String, "Start date (YYYY-MM-DD)", func() {
+				Format(FormatDate)
+				Pattern(`^\d{4}-\d{2}-\d{2}$`)
+			})
+			Field(2, "to", String, "End date (YYYY-MM-DD)", func() {
+				Format(FormatDate)
+				Pattern(`^\d{4}-\d{2}-\d{2}$`)
+			})
 			Required("from", "to")
 		})
 		Result(func() {
@@ -64,15 +92,31 @@ var _ = Service("get by tickets", func() {
 		HTTP(func() {
 			GET("/tickets/{from}/{to}")
 			Params(func() {
-				Param("from", String)
-				Param("to", String)
+				Param("from", String, func() {
+					Description("Start date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
+				Param("to", String, func() {
+					Description("End date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
 			})
 			Response(StatusOK)
 		})
 		GRPC(func() {
 			Message(func() {
-				Field(1, "from", String)
-				Field(2, "to", String)
+				Field(1, "from", String, func() {
+					Description("Start date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
+				Field(2, "to", String, func() {
+					Description("End date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
 			})
 			Response(CodeOK, func() {
 				Message(func() {
@@ -92,23 +136,45 @@ var _ = Service("get overall", func() {
 	Method("getOverallScore", func() {
 		Description("Get the overall aggregate score for a specified period.")
 		Payload(func() {
-			Field(1, "from", String, "Start date (YYYY-MM-DD)")
-			Field(2, "to", String, "End date (YYYY-MM-DD)")
+			Field(1, "from", String, "Start date (YYYY-MM-DD)", func() {
+				Format(FormatDate)
+				Pattern(`^\d{4}-\d{2}-\d{2}$`)
+			})
+			Field(2, "to", String, "End date (YYYY-MM-DD)", func() {
+				Format(FormatDate)
+				Pattern(`^\d{4}-\d{2}-\d{2}$`)
+			})
 			Required("from", "to")
 		})
 		Result(Float32)
 		HTTP(func() {
 			GET("/overall/{from}/{to}")
 			Params(func() {
-				Param("from", String)
-				Param("to", String)
+				Param("from", String, func() {
+					Description("Start date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
+				Param("to", String, func() {
+					Description("End date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
 			})
 			Response(StatusOK)
 		})
 		GRPC(func() {
 			Message(func() {
-				Field(1, "from", String)
-				Field(2, "to", String)
+				Field(1, "from", String, func() {
+					Description("Start date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
+				Field(2, "to", String, func() {
+					Description("End date in YYYY-MM-DD format")
+					Format(FormatDate)
+					Pattern(`^\d{4}-\d{2}-\d{2}$`)
+				})
 			})
 			Response(CodeOK, func() {
 				Message(func() {

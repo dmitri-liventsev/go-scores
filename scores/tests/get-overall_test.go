@@ -39,4 +39,52 @@ var _ = Describe("get overall score by period", func() {
 			})
 		})
 	})
+
+	Context("given not valid period", func() {
+		var client *getoverall.Client
+		var from, to string
+		var err error
+
+		BeforeEach(func() {
+			endpoint := getoverall.NewGetOverallScoreEndpoint(controllers.NewGetOverall(DB))
+			client = getoverall.NewClient(endpoint)
+		})
+
+		When("date format are not correct", func() {
+			from = "trololo"
+			to = "ololo"
+
+			BeforeEach(func(ctx context.Context) {
+				payload := getoverall.GetOverallScorePayload{
+					From: from,
+					To:   to,
+				}
+
+				_, err = client.GetOverallScore(ctx, &payload)
+			})
+
+			It("error should be returned", func() {
+				Expect(err).To(HaveOccurred())
+			})
+		})
+
+		When("start date after end date", func() {
+			from = "2020-01-01"
+			to = "2019-01-01"
+
+			BeforeEach(func(ctx context.Context) {
+				payload := getoverall.GetOverallScorePayload{
+					From: from,
+					To:   to,
+				}
+
+				_, err = client.GetOverallScore(ctx, &payload)
+			})
+
+			It("error should be returned", func() {
+				Expect(err).To(HaveOccurred())
+			})
+		})
+
+	})
 })

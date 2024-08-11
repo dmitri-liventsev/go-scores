@@ -13,6 +13,7 @@ import (
 	"net/http"
 
 	goahttp "goa.design/goa/v3/http"
+	goa "goa.design/goa/v3/pkg"
 )
 
 // EncodeGetAggregatedScoresByTicketResponse returns an encoder for responses
@@ -34,11 +35,19 @@ func DecodeGetAggregatedScoresByTicketRequest(mux goahttp.Muxer, decoder func(*h
 		var (
 			from string
 			to   string
+			err  error
 
 			params = mux.Vars(r)
 		)
 		from = params["from"]
+		err = goa.MergeErrors(err, goa.ValidateFormat("from", from, goa.FormatDate))
+		err = goa.MergeErrors(err, goa.ValidatePattern("from", from, "^\\d{4}-\\d{2}-\\d{2}$"))
 		to = params["to"]
+		err = goa.MergeErrors(err, goa.ValidateFormat("to", to, goa.FormatDate))
+		err = goa.MergeErrors(err, goa.ValidatePattern("to", to, "^\\d{4}-\\d{2}-\\d{2}$"))
+		if err != nil {
+			return nil, err
+		}
 		payload := NewGetAggregatedScoresByTicketPayload(from, to)
 
 		return payload, nil

@@ -38,6 +38,9 @@ func DecodeGetAggregatedScoresByTicketRequest(ctx context.Context, v any, md met
 		if message, ok = v.(*get_by_ticketspb.GetAggregatedScoresByTicketRequest); !ok {
 			return nil, goagrpc.ErrInvalidType("get by tickets", "getAggregatedScoresByTicket", "*get_by_ticketspb.GetAggregatedScoresByTicketRequest", v)
 		}
+		if err := ValidateGetAggregatedScoresByTicketRequest(message); err != nil {
+			return nil, err
+		}
 	}
 	var payload *getbytickets.GetAggregatedScoresByTicketPayload
 	{

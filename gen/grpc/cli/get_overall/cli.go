@@ -34,19 +34,19 @@ get-changes-by-periods get-changes-by-periods
 // UsageExamples produces an example of a valid invocation of the CLI tool.
 func UsageExamples() string {
 	return os.Args[0] + ` get-overall get-overall-score --message '{
-      "from": "Labore neque.",
-      "to": "Consequatur facere."
+      "from": "2009-05-07",
+      "to": "1980-02-17"
    }'` + "\n" +
 		os.Args[0] + ` get-by-categories get-aggregated-scores --message '{
-      "from": "Rem consequuntur magnam suscipit.",
-      "to": "Qui illum accusantium."
+      "from": "1973-07-11",
+      "to": "2007-06-03"
    }'` + "\n" +
 		os.Args[0] + ` get-by-tickets get-aggregated-scores-by-ticket --message '{
-      "from": "Similique cupiditate ut facilis.",
-      "to": "Quod vitae amet quos sint nulla."
+      "from": "2004-10-23",
+      "to": "1988-12-02"
    }'` + "\n" +
 		os.Args[0] + ` get-changes-by-periods get-changes-by-periods --message '{
-      "period": "Ab sed recusandae qui ex molestiae consectetur."
+      "period": "Exercitationem dolores praesentium iure accusantium sed debitis."
    }'` + "\n" +
 		""
 }
@@ -230,8 +230,8 @@ Get the overall aggregate score for a specified period.
 
 Example:
     %[1]s get-overall get-overall-score --message '{
-      "from": "Labore neque.",
-      "to": "Consequatur facere."
+      "from": "2009-05-07",
+      "to": "1980-02-17"
    }'
 `, os.Args[0])
 }
@@ -258,8 +258,8 @@ Get aggregated scores for categories within a specified period.
 
 Example:
     %[1]s get-by-categories get-aggregated-scores --message '{
-      "from": "Rem consequuntur magnam suscipit.",
-      "to": "Qui illum accusantium."
+      "from": "1973-07-11",
+      "to": "2007-06-03"
    }'
 `, os.Args[0])
 }
@@ -286,8 +286,8 @@ Get aggregate category scores by ticket for a specified period.
 
 Example:
     %[1]s get-by-tickets get-aggregated-scores-by-ticket --message '{
-      "from": "Similique cupiditate ut facilis.",
-      "to": "Quod vitae amet quos sint nulla."
+      "from": "2004-10-23",
+      "to": "1988-12-02"
    }'
 `, os.Args[0])
 }
@@ -314,7 +314,7 @@ Get the score change from a selected period over the previous period.
 
 Example:
     %[1]s get-changes-by-periods get-changes-by-periods --message '{
-      "period": "Ab sed recusandae qui ex molestiae consectetur."
+      "period": "Exercitationem dolores praesentium iure accusantium sed debitis."
    }'
 `, os.Args[0])
 }

@@ -9,18 +9,31 @@ package client
 
 import (
 	getbycategories "go-scores/gen/get_by_categories"
+
+	goa "goa.design/goa/v3/pkg"
 )
 
 // BuildGetAggregatedScoresPayload builds the payload for the get by categories
 // getAggregatedScores endpoint from CLI flags.
 func BuildGetAggregatedScoresPayload(getByCategoriesGetAggregatedScoresFrom string, getByCategoriesGetAggregatedScoresTo string) (*getbycategories.GetAggregatedScoresPayload, error) {
+	var err error
 	var from string
 	{
 		from = getByCategoriesGetAggregatedScoresFrom
+		err = goa.MergeErrors(err, goa.ValidateFormat("from", from, goa.FormatDate))
+		err = goa.MergeErrors(err, goa.ValidatePattern("from", from, "^\\d{4}-\\d{2}-\\d{2}$"))
+		if err != nil {
+			return nil, err
+		}
 	}
 	var to string
 	{
 		to = getByCategoriesGetAggregatedScoresTo
+		err = goa.MergeErrors(err, goa.ValidateFormat("to", to, goa.FormatDate))
+		err = goa.MergeErrors(err, goa.ValidatePattern("to", to, "^\\d{4}-\\d{2}-\\d{2}$"))
+		if err != nil {
+			return nil, err
+		}
 	}
 	v := &getbycategories.GetAggregatedScoresPayload{}
 	v.From = from

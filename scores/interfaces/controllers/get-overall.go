@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	getoverall "go-scores/gen/get_overall"
 	"go-scores/scores"
 	"go-scores/scores/internal/domain/repositories"
@@ -27,6 +28,10 @@ func (s *getOverallsrvc) GetOverallScore(ctx context.Context, p *getoverall.GetO
 	to, err := time.Parse(layout, p.To)
 	if err != nil {
 		return 0, err
+	}
+
+	if from.After(to) {
+		return 0, fmt.Errorf("start date cant be before end date")
 	}
 
 	score, err := s.query.Execute(from, to)

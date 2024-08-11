@@ -9,18 +9,31 @@ package client
 
 import (
 	getbytickets "go-scores/gen/get_by_tickets"
+
+	goa "goa.design/goa/v3/pkg"
 )
 
 // BuildGetAggregatedScoresByTicketPayload builds the payload for the get by
 // tickets getAggregatedScoresByTicket endpoint from CLI flags.
 func BuildGetAggregatedScoresByTicketPayload(getByTicketsGetAggregatedScoresByTicketFrom string, getByTicketsGetAggregatedScoresByTicketTo string) (*getbytickets.GetAggregatedScoresByTicketPayload, error) {
+	var err error
 	var from string
 	{
 		from = getByTicketsGetAggregatedScoresByTicketFrom
+		err = goa.MergeErrors(err, goa.ValidateFormat("from", from, goa.FormatDate))
+		err = goa.MergeErrors(err, goa.ValidatePattern("from", from, "^\\d{4}-\\d{2}-\\d{2}$"))
+		if err != nil {
+			return nil, err
+		}
 	}
 	var to string
 	{
 		to = getByTicketsGetAggregatedScoresByTicketTo
+		err = goa.MergeErrors(err, goa.ValidateFormat("to", to, goa.FormatDate))
+		err = goa.MergeErrors(err, goa.ValidatePattern("to", to, "^\\d{4}-\\d{2}-\\d{2}$"))
+		if err != nil {
+			return nil, err
+		}
 	}
 	v := &getbytickets.GetAggregatedScoresByTicketPayload{}
 	v.From = from

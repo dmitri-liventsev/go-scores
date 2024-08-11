@@ -62,4 +62,50 @@ var _ = Describe("get scores by tickets", func() {
 			})
 		})
 	})
+
+	Context("given not valid period", func() {
+		var client *getbytickets.Client
+		var from, to string
+		var err error
+		BeforeEach(func() {
+			endpoint := getbytickets.NewGetAggregatedScoresByTicketEndpoint(controllers.NewGetByTickets(DB))
+			client = getbytickets.NewClient(endpoint)
+		})
+
+		When("date format are not correct", func() {
+			from = "trololo"
+			to = "ololo"
+
+			BeforeEach(func(ctx context.Context) {
+				payload := getbytickets.GetAggregatedScoresByTicketPayload{
+					From: from,
+					To:   to,
+				}
+
+				_, err = client.GetAggregatedScoresByTicket(ctx, &payload)
+			})
+
+			It("error should be returned", func() {
+				Expect(err).To(HaveOccurred())
+			})
+		})
+
+		When("start date after end date", func() {
+			from = "2020-01-01"
+			to = "2019-01-01"
+
+			BeforeEach(func(ctx context.Context) {
+				payload := getbytickets.GetAggregatedScoresByTicketPayload{
+					From: from,
+					To:   to,
+				}
+
+				_, err = client.GetAggregatedScoresByTicket(ctx, &payload)
+			})
+
+			It("error should be returned", func() {
+				Expect(err).To(HaveOccurred())
+			})
+		})
+	})
 })

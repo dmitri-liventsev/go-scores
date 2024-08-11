@@ -10,6 +10,8 @@ package server
 import (
 	getbycategories "go-scores/gen/get_by_categories"
 	get_by_categoriespb "go-scores/gen/grpc/get_by_categories/pb"
+
+	goa "goa.design/goa/v3/pkg"
 )
 
 // NewGetAggregatedScoresPayload builds the payload of the
@@ -60,6 +62,16 @@ func NewProtoGetAggregatedScoresResponse(result *getbycategories.GetAggregatedSc
 		}
 	}
 	return message
+}
+
+// ValidateGetAggregatedScoresRequest runs the validations defined on
+// GetAggregatedScoresRequest.
+func ValidateGetAggregatedScoresRequest(message *get_by_categoriespb.GetAggregatedScoresRequest) (err error) {
+	err = goa.MergeErrors(err, goa.ValidateFormat("message.from", message.From, goa.FormatDate))
+	err = goa.MergeErrors(err, goa.ValidatePattern("message.from", message.From, "^\\d{4}-\\d{2}-\\d{2}$"))
+	err = goa.MergeErrors(err, goa.ValidateFormat("message.to", message.To, goa.FormatDate))
+	err = goa.MergeErrors(err, goa.ValidatePattern("message.to", message.To, "^\\d{4}-\\d{2}-\\d{2}$"))
+	return
 }
 
 // svcGetbycategoriesCategoryMetaToGetByCategoriespbCategoryMeta builds a value

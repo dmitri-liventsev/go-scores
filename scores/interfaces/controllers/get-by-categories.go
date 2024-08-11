@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	getbycategories "go-scores/gen/get_by_categories"
 	"go-scores/scores"
 	"go-scores/scores/internal/domain/entities"
@@ -28,6 +29,10 @@ func (s *getByCategories) GetAggregatedScores(_ context.Context, p *getbycategor
 	to, err := time.Parse(layout, p.To)
 	if err != nil {
 		return nil, err
+	}
+
+	if from.After(to) {
+		return nil, fmt.Errorf("start date cant be before end date")
 	}
 
 	catScores, periods, categories, err := s.query.Execute(from, to)

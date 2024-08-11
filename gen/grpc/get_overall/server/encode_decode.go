@@ -38,6 +38,9 @@ func DecodeGetOverallScoreRequest(ctx context.Context, v any, md metadata.MD) (a
 		if message, ok = v.(*get_overallpb.GetOverallScoreRequest); !ok {
 			return nil, goagrpc.ErrInvalidType("get overall", "getOverallScore", "*get_overallpb.GetOverallScoreRequest", v)
 		}
+		if err := ValidateGetOverallScoreRequest(message); err != nil {
+			return nil, err
+		}
 	}
 	var payload *getoverall.GetOverallScorePayload
 	{

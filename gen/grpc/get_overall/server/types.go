@@ -10,6 +10,8 @@ package server
 import (
 	getoverall "go-scores/gen/get_overall"
 	get_overallpb "go-scores/gen/grpc/get_overall/pb"
+
+	goa "goa.design/goa/v3/pkg"
 )
 
 // NewGetOverallScorePayload builds the payload of the "getOverallScore"
@@ -28,4 +30,14 @@ func NewProtoGetOverallScoreResponse(result float32) *get_overallpb.GetOverallSc
 	message := &get_overallpb.GetOverallScoreResponse{}
 	message.Field = result
 	return message
+}
+
+// ValidateGetOverallScoreRequest runs the validations defined on
+// GetOverallScoreRequest.
+func ValidateGetOverallScoreRequest(message *get_overallpb.GetOverallScoreRequest) (err error) {
+	err = goa.MergeErrors(err, goa.ValidateFormat("message.from", message.From, goa.FormatDate))
+	err = goa.MergeErrors(err, goa.ValidatePattern("message.from", message.From, "^\\d{4}-\\d{2}-\\d{2}$"))
+	err = goa.MergeErrors(err, goa.ValidateFormat("message.to", message.To, goa.FormatDate))
+	err = goa.MergeErrors(err, goa.ValidatePattern("message.to", message.To, "^\\d{4}-\\d{2}-\\d{2}$"))
+	return
 }

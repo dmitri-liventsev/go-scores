@@ -34,10 +34,10 @@ get-changes-by-periods get-changes-by-periods
 
 // UsageExamples produces an example of a valid invocation of the CLI tool.
 func UsageExamples() string {
-	return os.Args[0] + ` get-overall get-overall-score --from "Quia temporibus aut praesentium." --to "Rerum voluptate nemo ex voluptate voluptas."` + "\n" +
-		os.Args[0] + ` get-by-categories get-aggregated-scores --from "Dolor a dolor est labore eligendi aliquid." --to "Voluptas atque inventore laboriosam reprehenderit."` + "\n" +
-		os.Args[0] + ` get-by-tickets get-aggregated-scores-by-ticket --from "Aliquid dicta." --to "Et non doloremque et amet."` + "\n" +
-		os.Args[0] + ` get-changes-by-periods get-changes-by-periods --period "Consequuntur quia sapiente sit ea cumque."` + "\n" +
+	return os.Args[0] + ` get-overall get-overall-score --from "1972-12-12" --to "1979-05-23"` + "\n" +
+		os.Args[0] + ` get-by-categories get-aggregated-scores --from "1973-05-24" --to "2011-02-27"` + "\n" +
+		os.Args[0] + ` get-by-tickets get-aggregated-scores-by-ticket --from "1982-05-18" --to "1976-06-01"` + "\n" +
+		os.Args[0] + ` get-changes-by-periods get-changes-by-periods --period "Laborum occaecati sit assumenda earum labore."` + "\n" +
 		""
 }
 
@@ -54,20 +54,20 @@ func ParseEndpoint(
 		getOverallFlags = flag.NewFlagSet("get-overall", flag.ContinueOnError)
 
 		getOverallGetOverallScoreFlags    = flag.NewFlagSet("get-overall-score", flag.ExitOnError)
-		getOverallGetOverallScoreFromFlag = getOverallGetOverallScoreFlags.String("from", "REQUIRED", "Start date (YYYY-MM-DD)")
-		getOverallGetOverallScoreToFlag   = getOverallGetOverallScoreFlags.String("to", "REQUIRED", "End date (YYYY-MM-DD)")
+		getOverallGetOverallScoreFromFlag = getOverallGetOverallScoreFlags.String("from", "REQUIRED", "Start date in YYYY-MM-DD format")
+		getOverallGetOverallScoreToFlag   = getOverallGetOverallScoreFlags.String("to", "REQUIRED", "End date in YYYY-MM-DD format")
 
 		getByCategoriesFlags = flag.NewFlagSet("get-by-categories", flag.ContinueOnError)
 
 		getByCategoriesGetAggregatedScoresFlags    = flag.NewFlagSet("get-aggregated-scores", flag.ExitOnError)
-		getByCategoriesGetAggregatedScoresFromFlag = getByCategoriesGetAggregatedScoresFlags.String("from", "REQUIRED", "Start date (YYYY-MM-DD)")
-		getByCategoriesGetAggregatedScoresToFlag   = getByCategoriesGetAggregatedScoresFlags.String("to", "REQUIRED", "End date (YYYY-MM-DD)")
+		getByCategoriesGetAggregatedScoresFromFlag = getByCategoriesGetAggregatedScoresFlags.String("from", "REQUIRED", "Start date in YYYY-MM-DD format")
+		getByCategoriesGetAggregatedScoresToFlag   = getByCategoriesGetAggregatedScoresFlags.String("to", "REQUIRED", "End date in YYYY-MM-DD format")
 
 		getByTicketsFlags = flag.NewFlagSet("get-by-tickets", flag.ContinueOnError)
 
 		getByTicketsGetAggregatedScoresByTicketFlags    = flag.NewFlagSet("get-aggregated-scores-by-ticket", flag.ExitOnError)
-		getByTicketsGetAggregatedScoresByTicketFromFlag = getByTicketsGetAggregatedScoresByTicketFlags.String("from", "REQUIRED", "Start date (YYYY-MM-DD)")
-		getByTicketsGetAggregatedScoresByTicketToFlag   = getByTicketsGetAggregatedScoresByTicketFlags.String("to", "REQUIRED", "End date (YYYY-MM-DD)")
+		getByTicketsGetAggregatedScoresByTicketFromFlag = getByTicketsGetAggregatedScoresByTicketFlags.String("from", "REQUIRED", "Start date in YYYY-MM-DD format")
+		getByTicketsGetAggregatedScoresByTicketToFlag   = getByTicketsGetAggregatedScoresByTicketFlags.String("to", "REQUIRED", "End date in YYYY-MM-DD format")
 
 		getChangesByPeriodsFlags = flag.NewFlagSet("get-changes-by-periods", flag.ContinueOnError)
 
@@ -227,11 +227,11 @@ func getOverallGetOverallScoreUsage() {
 	fmt.Fprintf(os.Stderr, `%[1]s [flags] get-overall get-overall-score -from STRING -to STRING
 
 Get the overall aggregate score for a specified period.
-    -from STRING: Start date (YYYY-MM-DD)
-    -to STRING: End date (YYYY-MM-DD)
+    -from STRING: Start date in YYYY-MM-DD format
+    -to STRING: End date in YYYY-MM-DD format
 
 Example:
-    %[1]s get-overall get-overall-score --from "Quia temporibus aut praesentium." --to "Rerum voluptate nemo ex voluptate voluptas."
+    %[1]s get-overall get-overall-score --from "1972-12-12" --to "1979-05-23"
 `, os.Args[0])
 }
 
@@ -253,11 +253,11 @@ func getByCategoriesGetAggregatedScoresUsage() {
 	fmt.Fprintf(os.Stderr, `%[1]s [flags] get-by-categories get-aggregated-scores -from STRING -to STRING
 
 Get aggregated scores for categories within a specified period.
-    -from STRING: Start date (YYYY-MM-DD)
-    -to STRING: End date (YYYY-MM-DD)
+    -from STRING: Start date in YYYY-MM-DD format
+    -to STRING: End date in YYYY-MM-DD format
 
 Example:
-    %[1]s get-by-categories get-aggregated-scores --from "Dolor a dolor est labore eligendi aliquid." --to "Voluptas atque inventore laboriosam reprehenderit."
+    %[1]s get-by-categories get-aggregated-scores --from "1973-05-24" --to "2011-02-27"
 `, os.Args[0])
 }
 
@@ -279,11 +279,11 @@ func getByTicketsGetAggregatedScoresByTicketUsage() {
 	fmt.Fprintf(os.Stderr, `%[1]s [flags] get-by-tickets get-aggregated-scores-by-ticket -from STRING -to STRING
 
 Get aggregate category scores by ticket for a specified period.
-    -from STRING: Start date (YYYY-MM-DD)
-    -to STRING: End date (YYYY-MM-DD)
+    -from STRING: Start date in YYYY-MM-DD format
+    -to STRING: End date in YYYY-MM-DD format
 
 Example:
-    %[1]s get-by-tickets get-aggregated-scores-by-ticket --from "Aliquid dicta." --to "Et non doloremque et amet."
+    %[1]s get-by-tickets get-aggregated-scores-by-ticket --from "1982-05-18" --to "1976-06-01"
 `, os.Args[0])
 }
 
@@ -308,6 +308,6 @@ Get the score change from a selected period over the previous period.
     -period STRING: The period type (e.g., week, month, year)
 
 Example:
-    %[1]s get-changes-by-periods get-changes-by-periods --period "Consequuntur quia sapiente sit ea cumque."
+    %[1]s get-changes-by-periods get-changes-by-periods --period "Laborum occaecati sit assumenda earum labore."
 `, os.Args[0])
 }

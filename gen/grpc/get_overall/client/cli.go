@@ -23,7 +23,7 @@ func BuildGetOverallScorePayload(getOverallGetOverallScoreMessage string) (*geto
 		if getOverallGetOverallScoreMessage != "" {
 			err = json.Unmarshal([]byte(getOverallGetOverallScoreMessage), &message)
 			if err != nil {
-				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"from\": \"Labore neque.\",\n      \"to\": \"Consequatur facere.\"\n   }'")
+				return nil, fmt.Errorf("invalid JSON for message, \nerror: %s, \nexample of valid JSON:\n%s", err, "'{\n      \"from\": \"2009-05-07\",\n      \"to\": \"1980-02-17\"\n   }'")
 			}
 		}
 	}
